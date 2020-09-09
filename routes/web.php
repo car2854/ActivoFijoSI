@@ -106,3 +106,6 @@ Route::get('usuario/RegistroActividades','UltimaActividadesController@getActivid
 Route::get('usuario/PerfilUsuario/{id}','UltimaActividadesController@GetPerfil');
 
 Route::get('main/notification','NotificationController@index');
+
+
+//Si veo esto es que funciona
