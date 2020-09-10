@@ -55,101 +55,110 @@
 
                                   </div>
 
+                            </div>
+                            <div class="row">
 
-                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
-                                        <div class="form-group">
-                                            <label for="FechaAdquisicion">Fecha de Adquisicion</label>
-                                            <input type="date" name="FechaAdquisicion" class="form-control">
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="FechaAdquisicion">Fecha de Adquisicion</label>
+                                        <input type="date" name="FechaAdquisicion" class="form-control">
+                                    </div>
 
-                                  </div>
-
-
-                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-
-                                        <div class="form-group">
-                                            <label for="ValorCompra">Valor de Compra</label>
-                                            <input type="number" name="ValorCompra" class="form-control" placeholder="Valor de Compra...">
-                                        </div>
-
-                                  </div>
+                                </div>
 
 
-                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
-                                        <div class="form-group">
-                                              <label>Estado</label>
-                                              <select name="Estado" class="form-control" >
-                                                    <option value="Nuevo">Nuevo</option>
-                                                    <option value="Usado">Usado</option>
-                                              </select>
+                                    <div class="form-group">
+                                        <label for="ValorCompra">Valor de Compra</label>
+                                        <input type="number" name="ValorCompra" class="form-control" placeholder="Valor de Compra...">
+                                    </div>
 
-                                        </div>
+                                </div>
 
-                                  </div>
+                            </div>
+                            <div class="row">
 
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
-                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-
-                                         <div class="form-group">
-                                              <label>Almacen de Origen</label>
-                                              <select name="UbicacionAlmacen" class="form-control">
-                                                    <option value="">---Seleccione Almacen---</option>
-                                                    @foreach($almacenes as $alma)
-                                                    <option value="{{$alma->NroAlmacen}}">{{$alma->Direccion}}</option>
-                                                    @endforeach
-                                              </select>
-                                        </div>
-
-                                  </div>
-
-
-                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-
-                                         <div class="form-group">
-                                              <label>Departamento Destino</label>
-                                              <select name="UbicacionDepartamento" class="form-control" onchange= "seleccinar1()">
-                                                    <option value="">---Seleccione Departamento---</option>
-                                                    @foreach($departamentos as $depa)
-                                                    <option value="{{$depa->CodDepartamento}}">{{$depa->Descripcion}}</option>
-                                                    @endforeach
-                                              </select>
-                                        </div>
-
-                                  </div>
-
-
-
-                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-
-                                         <div class="form-group">
-                                              <label>Rubro</label>
-                                              <select name="CodRubro" class="form-control" id="CodRubro" onchange= "seleccinar2()">
-                                                    <option value="">---Seleccione Rubro---</option>
-                                                    @foreach($rubros as $rub)
-                                                    <option value="{{$rub->CodRubro}}">{{$rub->Descripcion}}</option>
-                                                    @endforeach
-                                              </select>
-                                        </div>
-
-                                  </div>
-
-
-                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-
-                                        <div class="form-group">
-                                            <label>Categoria</label>
-                                            <select name="CodCategoria" class="form-control" id="CodCategoria" onchange="seleccinar3()">
-                                                <option value="">---Seleccione Categoria---</option>
-                                                @foreach ($categorias as $c)
-                                                    <option value="{{$c->CodCategoria}}">{{$c->Nombre}}</option>
-                                                @endforeach
+                                    <div class="form-group">
+                                            <label>Estado</label>
+                                            <select name="Estado" class="form-control" >
+                                                <option value="Nuevo">Nuevo</option>
+                                                <option value="Usado">Usado</option>
                                             </select>
 
-                                        </div>
+                                    </div>
 
-                                  </div>
+                                </div>
+
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                                        <div class="form-group">
+                                            <label>Almacen de Origen</label>
+                                            <select name="UbicacionAlmacen" class="form-control">
+                                                <option value="">---Seleccione Almacen---</option>
+                                                @foreach($almacenes as $alma)
+                                                <option value="{{$alma->NroAlmacen}}">{{$alma->Direccion}}</option>
+                                                @endforeach
+                                            </select>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                                        <div class="form-group">
+                                            <label>Departamento Destino</label>
+                                            <select name="UbicacionDepartamento" class="form-control" onchange= "seleccinar1()">
+                                                <option value="">---Seleccione Departamento---</option>
+                                                @foreach($departamentos as $depa)
+                                                <option value="{{$depa->CodDepartamento}}">{{$depa->Descripcion}}</option>
+                                                @endforeach
+                                            </select>
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                                        <div class="form-group">
+                                            <label>Rubro</label>
+                                            <select name="CodRubro" class="form-control" id="CodRubro" onchange= "seleccinar2()">
+                                                <option value="">---Seleccione Rubro---</option>
+                                                @foreach($rubros as $rub)
+                                                <option value="{{$rub->CodRubro}}">{{$rub->Descripcion}}</option>
+                                                @endforeach
+                                            </select>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                                    <div class="form-group">
+                                        <label>Categoria</label>
+                                        <select name="CodCategoria" class="form-control" id="CodCategoria" onchange="seleccinar3()">
+                                            <option value="">---Seleccione Categoria---</option>
+                                            @foreach ($categorias as $c)
+                                                <option value="{{$c->CodCategoria}}">{{$c->Nombre}}</option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+
+                                </div>
                             </div>
 
                                         <div class="form-group">
