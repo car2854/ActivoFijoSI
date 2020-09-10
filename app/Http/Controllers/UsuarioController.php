@@ -58,7 +58,7 @@ public function __construct(){
 
     public function store(UsuarioFormRequest $request){
 
-
+        dd($request->rol);
         $sql = "SELECT max(id) as id
         FROM users;";
         $consulta = DB::select($sql);
@@ -69,6 +69,8 @@ public function __construct(){
         $usuario->email = $request->get('email');
         $usuario->password = bcrypt($request->get('password'));
     	$usuario->save();
+
+
 
 
         if($usuario->save()){
