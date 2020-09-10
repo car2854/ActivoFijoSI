@@ -35,14 +35,13 @@
                                     {!!Form::open(array('url'=>'seguridad/usuario','method'=>'POST','autocomplete'=>'off'))!!}
                                     {{Form::token()}}
 
-                                        <div class="form-group">
+                                        <div class="form-group col-6">
                                             <label for="name" class="form-label">{{ __('Nombre') }}</label>
 
                                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
                                         </div>
 
-                                        <div class="form-group">
+                                        <div class="form-group col-6">
                                             <label for="email" class="form-label text-md-right">{{ __('E-Mail ') }}</label>
 
                                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
