@@ -57,22 +57,22 @@
                                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                                 </div>
                                             </div>
-
-
-                                            <!--
-                                                Desde aqui la modificacion
-                                            -->
-
-                                            <div class="form-group">
-                                                <label>Rol</label>
-                                                <select class="form-control" name="rol">
-                                                    @foreach($roles as $key => $value)
-                                                    <option value="{{$value}}">{{$value}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-
                                         </div>
+
+
+                                        <!--
+                                            Desde aqui la modificacion
+                                        -->
+
+                                        <div class="form-group">
+                                            <label>Rol</label>
+                                            <select class="form-control" name="rol">
+                                                @foreach($roles as $key => $value)
+                                                <option value="{{$value}}">{{$value}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
 
                                     <div class="form-group">
                                         <button class="btn btn-primary" type="submit">Guardar</button>
