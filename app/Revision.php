@@ -13,6 +13,7 @@ class Revision extends Model
   public $timestamps=false;
 
   protected $fillable = [
+    'NroRevision'.
     'FechaHora',
     'CodCustodio',
     'CodBien',

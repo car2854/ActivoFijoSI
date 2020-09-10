@@ -85,7 +85,12 @@ class RevisionController extends Controller
   //almacenar el objeto POST
   public function store(RevisionFormRequest $request){
 
+    $sql = "SELECT max(NroRevision) as id
+    FROM revisiontecnica;";
+    $consulta = DB::select($sql);
+
     $revision = new Revision;
+    $revision->NroRevision = $consulta[0]->id + 1;
     $revision->CodBien = $request->get('CodBien');
     $revision->CodCustodio = $request->get('CodCustodio');
     $revision->CodOperador = $request->get('CodOperador');
