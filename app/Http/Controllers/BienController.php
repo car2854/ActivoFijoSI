@@ -51,7 +51,7 @@ class BienController extends Controller
     public function create(){
     	$rubros = DB::table('rubro')->get();
         $categorias = DB::table('categoria')->get();
-        dd($categoria);
+        dd($categorias);
         $departamentos = DB::table('departamento')->where('Estado','=','1')->get();
         $almacenes = DB::table('almacen')->where('Estado','=','1')->get();
     	return view("bienes.bien.create",["rubros"=>$rubros, "categorias"=>$categorias,"departamentos"=>$departamentos,'almacenes'=>$almacenes]);
