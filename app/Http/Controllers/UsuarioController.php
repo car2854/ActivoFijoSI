@@ -2,19 +2,20 @@
 
 namespace activofijo\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use activofijo\User;
-use Illuminate\Support\Facades\Redirect;
-use activofijo\Http\Requests\UsuarioFormRequest;
 use DB;
 
-
-use activofijo\Log_Change;
-use Illuminate\Auth\SessionGuard;
 use Carbon\Carbon;
+use activofijo\User;
+use activofijo\Log_Change;
+use Illuminate\Http\Request;
 
+
+use Illuminate\Auth\SessionGuard;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Redirect;
+
+use activofijo\Http\Controllers\Controller;
+use activofijo\Http\Requests\UsuarioFormRequest;
 
 class UsuarioController extends Controller
 {
@@ -67,7 +68,12 @@ public function __construct(){
         }
 
 
+        $sql = "SELECT max(id) as id
+                FROM log_change;";
+        $consulta = DB::select($sql);
+
         $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Registro a un nuevo usuario';
 

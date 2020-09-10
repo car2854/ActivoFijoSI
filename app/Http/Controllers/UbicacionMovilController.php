@@ -2,12 +2,13 @@
 
 namespace activofijo\Http\Controllers;
 
-use Illuminate\Http\Request;
 use DB;
+use Carbon\Carbon;
 use activofijo\Ubicacion;
 use activofijo\Log_Change;
+use Illuminate\Http\Request;
 use Illuminate\Auth\SessionGuard;
-use Carbon\Carbon;
+use activofijo\Http\Controllers\Controller;
 
 class UbicacionMovilController extends Controller
 {
@@ -20,24 +21,29 @@ class UbicacionMovilController extends Controller
     }
 
     public function store(Request $request){
-        
+
         $user = $request->get('users');
     $idU = DB::table('users')
     ->where('users.name','LIKE','%'.$user.'%')
     ->select('users.id');
-    
-    
+
+
+    $sql = "SELECT max(id) as id
+    FROM log_change;";
+    $consulta = DB::select($sql);
+
     $log = new Log_Change;
-    $log->id_user = $idU->value('id');
+    $log->id = $consulta[0]->id + 1;
+    $log->id_user = auth()->user()->id;
     $log->accion = 'Registro a un nuevo ubicacion desde el movil';
-    
+
     $now = Carbon::now();
     $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
     $log->save();
-        
-        
-        
+
+
+
       $ubicacion=new ubicacion($request->all());
       $ubicacion->save();
       return response()->json($ubicacion,200);

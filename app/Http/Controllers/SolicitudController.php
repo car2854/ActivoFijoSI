@@ -2,21 +2,23 @@
 
 namespace activofijo\Http\Controllers;
 
+use DB;
+
+
+use Response;
+use Carbon\Carbon;
+use activofijo\Rubro;
+use activofijo\Custodio;
+use activofijo\Solicitud;
+use activofijo\Log_Change;
+use activofijo\Responsable;
 use Illuminate\Http\Request;
 
-
-use DB;
-use Illuminate\Support\Facades\Redirect;
-use activofijo\Http\Requests\SolicitudFormRequest;
-use activofijo\Solicitud;
-use activofijo\Custodio;
-use activofijo\Responsable;
-use Response;
-use Illuminate\Support\Facades\View;
-
-use activofijo\Log_Change;
 use Illuminate\Auth\SessionGuard;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Redirect;
+use activofijo\Http\Controllers\Controller;
+use activofijo\Http\Requests\SolicitudFormRequest;
 
 
 
@@ -54,16 +56,22 @@ class SolicitudController extends Controller
         $solicitud->CodCustodio = $request->get('CodCustodio');
         $solicitud->CodResponsable = $request->get('CodResponsable');
         $rubro->save();
-       $log = new Log_Change;
+
+        $sql = "SELECT max(id) as id
+                FROM log_change;";
+        $consulta = DB::select($sql);
+
+        $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Realizo una solicitud';
-        
+
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
         $log->save();
 
-       
+
         return Redirect::to("solicitud/solicitud");
     }
     public function show($id){

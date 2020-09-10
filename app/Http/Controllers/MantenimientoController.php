@@ -2,17 +2,19 @@
 
 namespace activofijo\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use activofijo\Http\Requests;
-use Illuminate\Support\Facades\Redirect;
-use activofijo\Http\Requests\MantenimientoFormRequest;
-use activofijo\Mantenimiento;
 use DB;
 
-use activofijo\Log_Change;
-use Illuminate\Auth\SessionGuard;
 use Carbon\Carbon;
+use activofijo\Log_Change;
+use Illuminate\Http\Request;
+use activofijo\Http\Requests;
+use activofijo\Mantenimiento;
+
+use Illuminate\Auth\SessionGuard;
+use Illuminate\Support\Facades\Redirect;
+use activofijo\Http\Controllers\Controller;
+use activofijo\Http\Requests\OperadorFormRequest;
+use activofijo\Http\Requests\MantenimientoFormRequest;
 
 
 
@@ -39,23 +41,23 @@ class MantenimientoController extends Controller
   public function create($NroR){
     return view("RevisionTecnica.Mantenimiento.Create",["NroR"=>$NroR]);
   }
-  
+
   public function store(MantenimientoFormRequest $request){
-    
+
     $fechaInicio = $request->get('FechaInicio');
     $fechaFin = $request->get('FechaFinalizo');
-    
+
     $anioI = substr($fechaInicio,0,4);
     $mesI = substr($fechaInicio,5,2);
     $diaI = substr($fechaInicio,8,2);
     $fechaInicio = $anioI . '-' . $mesI . '-' . $diaI;
-    
+
     $anioF = substr($fechaFin,0,4);
     $mesF = substr($fechaFin,5,2);
     $diaF = substr($fechaFin,8,2);
     $fechaFin = $anioF . '-' . $mesF . '-' . $diaF;
-    
-    
+
+
     $mant=new mantenimiento;
     $mant->NroRevision = $request->get('NroRevision');
     $mant->Problema = $request->get('Problema');
@@ -68,15 +70,20 @@ class MantenimientoController extends Controller
     $mant->Costo = $request->get('Costo');
     $mant->save();
 
-    
-        $log = new Log_Change;
-        $log->id_user = auth()->user()->id;
-        $log->accion = 'Realizo un mantenimiento';
-        
-        $now = Carbon::now();
-        $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
-        $log->save();
+    $sql = "SELECT max(id) as id
+    FROM log_change;";
+    $consulta = DB::select($sql);
+
+    $log = new Log_Change;
+    $log->id = $consulta[0]->id + 1;
+    $log->id_user = auth()->user()->id;
+    $log->accion = 'Realizo un mantenimiento';
+
+    $now = Carbon::now();
+    $log->fechaAccion = $now->format('d/m/Y H:i:s');
+
+    $log->save();
 
 
     return Redirect::to('/RevisionTecnica/revisiontecnica');
@@ -100,7 +107,7 @@ class MantenimientoController extends Controller
 
     return Redirect::to('RevisionTecnica/Operador');
   }
-  
+
   public function crearPDF(){
 
       $vistaUrl = "reportes.mantenimiento";

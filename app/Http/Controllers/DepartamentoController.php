@@ -11,6 +11,7 @@ use activofijo\Departamento;
 use Illuminate\Http\Request;
 use Illuminate\Auth\SessionGuard;
 use Illuminate\Support\Facades\Redirect;
+use activofijo\Http\Controllers\Controller;
 use activofijo\Http\Requests\DepartamentoFormRequest;
 
 
@@ -60,7 +61,12 @@ class DepartamentoController extends Controller
         $dpto->CodUbicacion = $request->get('codubicacion');
         $dpto->save();
 
-            $log = new Log_Change;
+        $sql = "SELECT max(id) as id
+                FROM log_change;";
+        $consulta = DB::select($sql);
+
+        $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Registro un nuevo departamento';
 

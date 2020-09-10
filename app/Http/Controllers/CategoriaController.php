@@ -2,16 +2,17 @@
 
 namespace activofijo\Http\Controllers;
 
-use Illuminate\Http\Request;
 use DB;
-use activofijo\Categoria;
-use Illuminate\Support\Facades\Redirect;
-use activofijo\Http\Requests\CategoriaFormRequest;
-
-
-use activofijo\Log_Change;
-use Illuminate\Auth\SessionGuard;
 use Carbon\Carbon;
+use activofijo\Categoria;
+use activofijo\Log_Change;
+use Illuminate\Http\Request;
+
+
+use Illuminate\Auth\SessionGuard;
+use Illuminate\Support\Facades\Redirect;
+use activofijo\Http\Controllers\Controller;
+use activofijo\Http\Requests\CategoriaFormRequest;
 
 
 class CategoriaController extends Controller
@@ -58,7 +59,12 @@ class CategoriaController extends Controller
         $categoria->CodRubro = $request->get('codrubro');
         $categoria->save();
 
+        $sql = "SELECT max(id) as id
+                FROM log_change;";
+        $consulta = DB::select($sql);
+
         $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Registro una nueva categoria';
 

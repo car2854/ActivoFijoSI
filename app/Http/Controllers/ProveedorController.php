@@ -2,17 +2,18 @@
 
 namespace activofijo\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use activofijo\Proveedor;
-use Illuminate\Support\Facades\Redirect;
-use activofijo\Http\Requests\ProveedorFormRequest;
 use DB;
 
-
-use activofijo\Log_Change;
-use Illuminate\Auth\SessionGuard;
 use Carbon\Carbon;
+use activofijo\Proveedor;
+use activofijo\Log_Change;
+use Illuminate\Http\Request;
+
+
+use Illuminate\Auth\SessionGuard;
+use Illuminate\Support\Facades\Redirect;
+use activofijo\Http\Controllers\Controller;
+use activofijo\Http\Requests\ProveedorFormRequest;
 
 
 
@@ -31,7 +32,7 @@ class ProveedorController extends Controller
                 ->paginate(5);
     			return view('empleado.proveedor.index',["proveedor"=>$proveedor,"searchText"=>$query]);
     		}
-    }	
+    }
 
     public function create(){
     	return view("empleado.proveedor.create");
@@ -46,17 +47,23 @@ class ProveedorController extends Controller
         $proveedor->Telefono = $request->get('telefono');
         $proveedor->Direccion = $request->get('direccion');
         $proveedor->Estado=1;
-    	$proveedor->save();
-    	        $log = new Log_Change;
+        $proveedor->save();
+
+        $sql = "SELECT max(id) as id
+                FROM log_change;";
+        $consulta = DB::select($sql);
+
+        $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Registro a un nuevo proveedor';
-        
+
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
         $log->save();
 
-    	
+
     	return Redirect('empleado/proveedor');
 
     }
@@ -78,11 +85,11 @@ class ProveedorController extends Controller
         $proveedor->Telefono = $request->get('telefono');
         $proveedor->Direccion = $request->get('direccion');
         $proveedor->update();
-        
+
                 $log = new Log_Change;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Actualizo el registro de un proveedor';
-        
+
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
@@ -99,19 +106,19 @@ class ProveedorController extends Controller
     	        $log = new Log_Change;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Elimino el registro de un proveedor';
-        
+
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
         $log->save();
 
-    	
+
     	return Redirect('empleado/proveedor');
-    	
-    	
-    	
+
+
+
     }
-    
+
     public function crearPDF(){
 
       $vistaUrl = "reportes.proveedor";

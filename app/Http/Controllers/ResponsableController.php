@@ -2,16 +2,17 @@
 
 namespace activofijo\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use activofijo\Responsable;
-use Illuminate\Support\Facades\Redirect;
-use activofijo\Http\Requests\ResponsableFormRequest;
 use DB;
 
-use activofijo\Log_Change;
-use Illuminate\Auth\SessionGuard;
 use Carbon\Carbon;
+use activofijo\Log_Change;
+use activofijo\Responsable;
+use Illuminate\Http\Request;
+
+use Illuminate\Auth\SessionGuard;
+use Illuminate\Support\Facades\Redirect;
+use activofijo\Http\Controllers\Controller;
+use activofijo\Http\Requests\ResponsableFormRequest;
 
 
 class ResponsableController extends Controller
@@ -29,7 +30,7 @@ class ResponsableController extends Controller
                 ->paginate(5);
     			return view('empleado.responsable.index',["responsables"=>$responsables,"searchText"=>$query]);
     		}
-    }	
+    }
 
     public function create(){
     	return view("empleado.responsable.create");
@@ -44,11 +45,16 @@ class ResponsableController extends Controller
         $responsable->Telefono = $request->get('telefono');
         $responsable->Estado = 1;
     	$responsable->save();
-    	
-    	   $log = new Log_Change;
+
+        $sql = "SELECT max(id) as id
+                FROM log_change;";
+        $consulta = DB::select($sql);
+
+        $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Registro a un nuevo responsable de activos';
-        
+
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
@@ -74,11 +80,11 @@ class ResponsableController extends Controller
     	$responsable->Apellido = $request->get('apellido');
     	$responsable->Telefono = $request->get('telefono');
         $responsable->update();
-        
+
         $log = new Log_Change;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Actualizo el registro de un responsable de activos';
-        
+
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
@@ -92,11 +98,11 @@ class ResponsableController extends Controller
     	$responsable = Responsable::findOrFail($id);
         $responsable->Estado = 0;
         $responsable->update();
-        
+
         $log = new Log_Change;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Elimino el registro de un responsable de activos';
-        
+
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
@@ -104,7 +110,7 @@ class ResponsableController extends Controller
 
     	return Redirect('empleado/responsable');
     }
-    
+
     public function crearPDF(){
 
       $vistaUrl = "reportes.responsable";

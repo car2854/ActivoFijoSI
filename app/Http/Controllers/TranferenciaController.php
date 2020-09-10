@@ -2,21 +2,24 @@
 
 namespace activofijo\Http\Controllers;
 
-use Illuminate\Http\Request;
 use DB;
-use Illuminate\Support\Facades\Redirect;
-use activofijo\Http\Requests\TranferenciaFormRequest;
-use activofijo\Custodio;
-use activofijo\Ubicacion;
-use activofijo\Responsable;
+use Carbon\Carbon;
 use activofijo\Bien;
+use activofijo\Custodio;
+use activofijo\Categoria;
+use activofijo\Ubicacion;
+use activofijo\Log_Change;
+use activofijo\Responsable;
 use activofijo\Tranferencia;
 
 
 
-use activofijo\Log_Change;
+use Illuminate\Http\Request;
 use Illuminate\Auth\SessionGuard;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Redirect;
+use activofijo\Http\Controllers\Controller;
+use activofijo\Http\Requests\CategoriaFormRequest;
+use activofijo\Http\Requests\TranferenciaFormRequest;
 
 
 class TranferenciaController extends Controller
@@ -46,7 +49,7 @@ class TranferenciaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $ubicacion=DB::table('ubicacion')->get();
         $custodio=DB::table('custodio')->get();
         $responsable=DB::table('responsable')->get();
@@ -62,8 +65,8 @@ class TranferenciaController extends Controller
      */
 
     public function store( TranferenciaFormRequest $request)
-    {   
-        
+    {
+
        // $mayuscula = strtoupper($request->get('nombre'));
         $tranferencia = new Tranferencia;
         //$tranferencia->NroTransferencia = $request->get('nrotransferencia');
@@ -73,13 +76,17 @@ class TranferenciaController extends Controller
         $tranferencia->CodResponsable = $request->get('responsable');
         $tranferencia->CodBien = $request->get('bien');
         $tranferencia->save();
-        
-        
+
+
+        $sql = "SELECT max(id) as id
+                FROM log_change;";
+        $consulta = DB::select($sql);
 
         $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Realizo una transferencia';
-        
+
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
@@ -89,13 +96,13 @@ class TranferenciaController extends Controller
         //dd($request->all());
     }
 
- 
+
     public function show($id)
     {
       //  return view("almacen.categoria.show",["categoria"=>Categoria::findOrFail($id)]);
     }
 
-   
+
     public function edit($id)
     {
        /* $categoria = Categoria::findOrFail($id);
@@ -103,7 +110,7 @@ class TranferenciaController extends Controller
         return view("almacen.categoria.edit",["categoria"=>$categoria,"rubro"=>$rubro]);*/
     }
 
-    
+
     public function update(CategoriaFormRequest $request, $id)
     {
         $tranferencia = Tranferencia::findOrFail($id);
@@ -117,14 +124,14 @@ class TranferenciaController extends Controller
         return Redirect::to("tranferencia/transferencia");
     }
 
-    
+
     public function destroy($id)
     {
        /* $categoria = Categoria::where('CodCategoria','=',$id)->first();
         $categoria->delete();
         return Redirect::to('almacen/categoria');*/
     }
-    
+
     public function crearPDF(){
 
       $vistaUrl = "reportes.tranferencia";

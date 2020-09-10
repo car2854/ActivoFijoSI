@@ -2,17 +2,18 @@
 
 namespace activofijo\Http\Controllers;
 
-use Illuminate\Http\Request;
 use DB;
-use Illuminate\Support\Facades\Redirect;
-use activofijo\Http\Requests\UbicacionFormRequest;
-use activofijo\Ubicacion;
-use activofijo\notification;
-
-
-use activofijo\Log_Change;
-use Illuminate\Auth\SessionGuard;
 use Carbon\Carbon;
+use activofijo\Ubicacion;
+use activofijo\Log_Change;
+use activofijo\notification;
+use Illuminate\Http\Request;
+
+
+use Illuminate\Auth\SessionGuard;
+use Illuminate\Support\Facades\Redirect;
+use activofijo\Http\Controllers\Controller;
+use activofijo\Http\Requests\UbicacionFormRequest;
 
 
 
@@ -49,7 +50,12 @@ class UbicacionController extends Controller
         $ubicacion->save();
 
 
+        $sql = "SELECT max(id) as id
+                FROM log_change;";
+        $consulta = DB::select($sql);
+
         $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Registro a una nueva ubicacion';
 

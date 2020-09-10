@@ -2,16 +2,19 @@
 
 namespace activofijo\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use activofijo\Http\Requests;
-use activofijo\Revaluo;
-use Illuminate\Support\Facades\Redirect;
-use activofijo\Http\Requests\RevaluoFromRequest;
 use DB;
-use activofijo\Log_Change;
-use Illuminate\Auth\SessionGuard;
+
 use Carbon\Carbon;
+use activofijo\Revaluo;
+use activofijo\Operador;
+use activofijo\Log_Change;
+use Illuminate\Http\Request;
+use activofijo\Http\Requests;
+use Illuminate\Auth\SessionGuard;
+use Illuminate\Support\Facades\Redirect;
+use activofijo\Http\Controllers\Controller;
+use activofijo\Http\Requests\RevaluoFromRequest;
+use activofijo\Http\Requests\OperadorFormRequest;
 
 class RevaluoController extends Controller
 {
@@ -49,17 +52,22 @@ class RevaluoController extends Controller
     $rev->Descripcion = $request->get('Descripcion');
     $rev->save();
 
-   
-        $log = new Log_Change;
-        $log->id_user = auth()->user()->id;
-        $log->accion = 'Realizo un revaluo';
-        
-        $now = Carbon::now();
-        $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
-        $log->save();
-   
-   
+    $sql = "SELECT max(id) as id
+    FROM log_change;";
+    $consulta = DB::select($sql);
+
+    $log = new Log_Change;
+    $log->id = $consulta[0]->id + 1;
+    $log->id_user = auth()->user()->id;
+    $log->accion = 'Realizo un revaluo';
+
+    $now = Carbon::now();
+    $log->fechaAccion = $now->format('d/m/Y H:i:s');
+
+    $log->save();
+
+
     return Redirect::to('/RevisionTecnica/revisiontecnica');
   }
 

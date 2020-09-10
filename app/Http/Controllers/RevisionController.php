@@ -2,17 +2,18 @@
 
 namespace activofijo\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-//use activofijo\Http\Requests;
-use activofijo\Revision;
-use Illuminate\Support\Facades\Redirect;
-use activofijo\Http\Requests\RevisionFormRequest;
 use DB;
 
-use activofijo\Log_Change;
-use Illuminate\Auth\SessionGuard;
+//use activofijo\Http\Requests;
 use Carbon\Carbon;
+use activofijo\Revision;
+use activofijo\Log_Change;
+use Illuminate\Http\Request;
+
+use Illuminate\Auth\SessionGuard;
+use Illuminate\Support\Facades\Redirect;
+use activofijo\Http\Controllers\Controller;
+use activofijo\Http\Requests\RevisionFormRequest;
 
 
 class RevisionController extends Controller
@@ -93,15 +94,20 @@ class RevisionController extends Controller
     $revision->FechaHora = $now;
     $revision->save();
 
-    
-        $log = new Log_Change;
-        $log->id_user = auth()->user()->id;
-        $log->accion = 'Realizo un revision tecnica';
-        
-        $now = Carbon::now();
-        $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
-        $log->save();
+    $sql = "SELECT max(id) as id
+    FROM log_change;";
+    $consulta = DB::select($sql);
+
+    $log = new Log_Change;
+    $log->id = $consulta[0]->id + 1;
+    $log->id_user = auth()->user()->id;
+    $log->accion = 'Realizo un revision tecnica';
+
+    $now = Carbon::now();
+    $log->fechaAccion = $now->format('d/m/Y H:i:s');
+
+    $log->save();
 
     return Redirect::to('RevisionTecnica/revisiontecnica');
   }

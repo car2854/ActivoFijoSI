@@ -2,23 +2,24 @@
 
 namespace activofijo\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use activofijo\Custodio;
-use activofijo\Departamento;
-use Illuminate\Support\Facades\Redirect;
-use activofijo\Http\Requests\CustodioFormRequest;
 use DB;
 
 use Response;
-use Illuminate\Support\Collection;
-
-
-
-
-use activofijo\Log_Change;
-use Illuminate\Auth\SessionGuard;
 use Carbon\Carbon;
+use activofijo\Custodio;
+use activofijo\Log_Change;
+use activofijo\Departamento;
+
+use Illuminate\Http\Request;
+use Illuminate\Auth\SessionGuard;
+
+
+
+
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Redirect;
+use activofijo\Http\Controllers\Controller;
+use activofijo\Http\Requests\CustodioFormRequest;
 
 
 class CustodioController extends Controller
@@ -38,7 +39,7 @@ class CustodioController extends Controller
                 ->paginate(5);
     			return view('empleado.custodio.index',["custodios"=>$custodios,"searchText"=>$query]);
     		}
-    }	
+    }
 
     public function create(){
         $departamentos = DB::table('departamento')->get();
@@ -55,24 +56,29 @@ class CustodioController extends Controller
         $custodio->Estado = 1;
         $custodio->CodDepartamento = $request->get('departamento');
     	$custodio->save();
-    	
-    	        $log = new Log_Change;
+
+        $sql = "SELECT max(id) as id
+                FROM log_change;";
+        $consulta = DB::select($sql);
+
+        $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Registro a un nuevo custodio';
-        
+
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
         $log->save();
 
-    	
+
     	return Redirect('empleado/custodio');
 
     }
 
 
     public function show($id){
-       
+
         return view('empleado.custodio.show',["custodio"=>Custodio::findOrFail($id)]);
     }
 
@@ -90,11 +96,11 @@ class CustodioController extends Controller
     	$custodio->Telefono = $request->get('telefono');
         $custodio->CodDepartamento = $request->get('departamento');
         $custodio->update();
-        
+
                 $log = new Log_Change;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Actualizo el registro de un custodio';
-        
+
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
@@ -108,11 +114,11 @@ class CustodioController extends Controller
     	$custodio = Custodio::findOrFail($id);
         $custodio->Estado = 0;
         $custodio->update();
-        
+
                 $log = new Log_Change;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Elimino el registro de un custodio';
-        
+
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
@@ -120,7 +126,7 @@ class CustodioController extends Controller
 
     	return Redirect('empleado/custodio');
     }
-    
+
     public function crearPDF(){
 
       $vistaUrl = "reportes.custodio";
@@ -137,5 +143,5 @@ class CustodioController extends Controller
 
       return $pdf->stream('reporte-custodio.pdf');
     }
-    
+
 }
