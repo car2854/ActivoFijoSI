@@ -16,7 +16,7 @@
             <!-- /# row -->
             <section id="main-content">
 
-                <div class="col-lg-12">
+
                     <div class="card">
                         <div class="card-body">
                             <div class="basic-form">
@@ -173,7 +173,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+
 
             </section>
         </div>
