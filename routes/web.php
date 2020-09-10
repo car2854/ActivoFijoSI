@@ -111,6 +111,10 @@ Route::get('main/notification','NotificationController@index');
 
 
 //Si veo esto es que funciona
+<<<<<<< HEAD
 
 
 //Editando archivo
+=======
+//Si veo esto es que descarga
+>>>>>>> dea06d8949fd2c59c10e67e9b13b171c7dcaf3bc
