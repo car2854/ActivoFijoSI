@@ -28,7 +28,7 @@
             <!-- /# row -->
             <section id="main-content">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-title">
                                 <h4>Input Style</h4>
@@ -58,52 +58,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /# column -->
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-title">
-                                <h4>Search Box Style</h4>
-
-                            </div>
-                            <div class="card-body">
-                                <div class="basic-form">
-                                    <form>
-                                        <div class="form-group">
-                                            <p class="text-muted m-b-15 f-s-12">the classes on an <code>input-group</code>, <code>input-group-btn</code> for Default input group.</p>
-                                            <div class="input-group input-group-default">
-                                                <span class="input-group-btn"><button class="btn btn-primary" type="submit"><i class="ti-search"></i></button></span>
-                                                <input type="text" placeholder="Search Default" name="Search" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <p class="text-muted m-b-15 f-s-12">this class are <code>input-group-rounded</code> and <code>btn-group-right</code> for input group rounded with search icon.</p>
-                                            <div class="input-group input-group-rounded">
-                                                <input type="text" placeholder="Search Round" name="Search" class="form-control">
-                                                <span class="input-group-btn"><button class="btn btn-primary btn-group-right" type="submit"><i class="ti-search"></i></button></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <p class="text-muted m-b-15 f-s-12">this class <code>input-group-flat</code> , <code>input-group-close-icon</code> for flat input group with close icon.</p>
-                                            <div class="input-group input-group-flat">
-                                                <span class="input-group-btn"><button class="btn btn-primary" type="submit"><i class="ti-search"></i></button></span>
-                                                <input type="text" class="form-control" placeholder="Search Default">
-                                                <span class="input-group-btn"><button class="btn btn-primary input-group-close-icon" type="submit"><i class="ti-close"></i></button></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <p class="text-muted m-b-15 f-s-12">this class are <code>input-group-rounded</code> , <code>btn-group-left</code> and <code>btn-group-right</code> for input group rounded with search icon.</p>
-                                            <div class="input-group input-group-rounded">
-                                                <span class="input-group-btn"><button class="btn btn-primary input-group-close-icon btn-group-left" type="submit"><i class="ti-close"></i></button></span>
-                                                <input type="text" class="form-control" placeholder="Search Round">
-                                                <span class="input-group-btn"><button class="btn btn-primary btn-group-right" type="submit"><i class="ti-search"></i></button></span>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /# column -->
                 </div>
 
 
