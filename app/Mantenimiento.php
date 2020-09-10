@@ -13,15 +13,16 @@ class Mantenimiento extends Model
     public $timestamps = false;
 
     protected $fillable = [
-      'Problema',
-      'Solucion',
-      'FechaInicio',
-      'FechaFinalizo',
-      'HoraIncio',
-      'HoraFinalizo',
-      'Duraccion',
-      'Costo',
-      'NroRevision',
+        'NroMantenimiento',
+        'Problema',
+        'Solucion',
+        'FechaInicio',
+        'FechaFinalizo',
+        'HoraIncio',
+        'HoraFinalizo',
+        'Duraccion',
+        'Costo',
+        'NroRevision',
     ];
 
     protected $guarded = [

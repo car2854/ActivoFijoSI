@@ -44,6 +44,10 @@ class MantenimientoController extends Controller
 
   public function store(MantenimientoFormRequest $request){
 
+    $sql = "SELECT max(NroMantenimiento) as id
+    FROM mantenimiento;";
+    $consulta = DB::select($sql);
+
     $fechaInicio = $request->get('FechaInicio');
     $fechaFin = $request->get('FechaFinalizo');
 
@@ -59,6 +63,7 @@ class MantenimientoController extends Controller
 
 
     $mant=new mantenimiento;
+    $mant->NroMantenimiento = $consulta[0]->id + 1;
     $mant->NroRevision = $request->get('NroRevision');
     $mant->Problema = $request->get('Problema');
     $mant->Solucion = $request->get('Solucion');
@@ -86,7 +91,7 @@ class MantenimientoController extends Controller
     $log->save();
 
 
-    return Redirect::to('/RevisionTecnica/revisiontecnica');
+        return Redirect::to('/RevisionTecnica/revisiontecnica');
   }
 
   public function show($id){
