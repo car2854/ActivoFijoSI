@@ -69,12 +69,8 @@ public function __construct(){
         $usuario->password = bcrypt($request->get('password'));
     	$usuario->save();
 
+        $usuario->assignRole($request->rol);
 
-
-
-        if($usuario->save()){
-            $usuario->assignRole($request->rol);
-        }
 
 
         $sql = "SELECT max(id) as id
