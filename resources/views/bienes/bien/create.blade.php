@@ -25,7 +25,7 @@
                         <div class="card-body">
                             <div class="basic-form">
                                 <div class="row">
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <h3>Nuevo Bien</h3>
                                         @if (count($errors)>0)
                                         <div class="alert alert-danger">
@@ -41,7 +41,7 @@
                                         {{Form::token()}}
 
                             <div class="row">
-                                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
                                         <div class="form-group">
                                             <label for="CodBien">Codigo</label>
@@ -51,7 +51,7 @@
                                   </div>
 
 
-                                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
                                         <div class="form-group">
                                             <label for="Nombre">Nombre</label>
@@ -61,7 +61,7 @@
                                   </div>
 
 
-                                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
                                         <div class="form-group">
                                             <label for="FechaAdquisicion">Fecha de Adquisicion</label>
@@ -71,7 +71,7 @@
                                   </div>
 
 
-                                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
                                         <div class="form-group">
                                             <label for="ValorCompra">Valor de Compra</label>
@@ -81,7 +81,7 @@
                                   </div>
 
 
-                                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
                                         <div class="form-group">
                                               <label>Estado</label>
@@ -95,7 +95,7 @@
                                   </div>
 
 
-                                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
                                          <div class="form-group">
                                               <label>Almacen de Origen</label>
@@ -110,7 +110,7 @@
                                   </div>
 
 
-                                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
                                          <div class="form-group">
                                               <label>Departamento Destino</label>
@@ -126,7 +126,7 @@
 
 
 
-                                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
                                          <div class="form-group">
                                               <label>Rubro</label>
@@ -141,7 +141,7 @@
                                   </div>
 
 
-                                  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
                                         <div class="form-group">
                                             <label>Categoria</label>
