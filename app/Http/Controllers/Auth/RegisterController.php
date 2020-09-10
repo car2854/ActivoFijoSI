@@ -63,10 +63,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $sql = "SELECT max(id) as id
+        FROM users;";
+        $consulta = DB::select($sql);
+
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'id'        => $consulta[0]->id + 1,
+            'name'      => $data['name'],
+            'email'     => $data['email'],
+            'password'  => Hash::make($data['password']),
         ]);
     }
 }
