@@ -46,9 +46,7 @@
                                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <label for="password">{{ __('Password') }}</label>
@@ -59,22 +57,22 @@
                                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                                 </div>
                                             </div>
-                                        </div>
 
 
-                                        <!--
-                                        Desde aqui la modificacion
-                                        -->
+                                            <!--
+                                                Desde aqui la modificacion
+                                            -->
 
-                                        <div class="form-group">
-                                            <label>Rol</label>
-                                            <select class="form-control" name="rol">
-                                                @foreach($roles as $key => $value)
+                                            <div class="form-group">
+                                                <label>Rol</label>
+                                                <select class="form-control" name="rol">
+                                                    @foreach($roles as $key => $value)
                                                     <option value="{{$value}}">{{$value}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                                    @endforeach
+                                                </select>
+                                            </div>
 
+                                        </div>
 
                                     <div class="form-group">
                                         <button class="btn btn-primary" type="submit">Guardar</button>
