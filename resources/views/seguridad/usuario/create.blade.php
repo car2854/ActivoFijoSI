@@ -36,32 +36,30 @@
                                     {{Form::token()}}
 
                                         <div class="form-group">
-                                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+                                            <label for="name" class="form-label">{{ __('Nombre') }}</label>
 
                                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail ') }}</label>
-
+                                            <label for="email" class="form-label text-md-right">{{ __('E-Mail ') }}</label>
 
                                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
 
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                            <label for="password" class="form-label">{{ __('Password') }}</label>
 
                                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Password') }}</label>
+                                            <label for="password-confirm" class="form-label">{{ __('Confirmar Password') }}</label>
 
-                                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
 
                                         </div>
 
@@ -70,7 +68,7 @@
                                         -->
 
                                         <div class="form-group">
-                                            <label class="col-md-4 col-form-label text-md-right">Rol</label>
+                                            <label class="form-label">Rol</label>
 
                                             <select class="form-control" name="rol">
                                                 @foreach($roles as $key => $value)
