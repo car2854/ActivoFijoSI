@@ -44,7 +44,7 @@ public function __construct(){
                 ->where('us.name','LIKE','%'.$query.'%')
                 ->orderBy('us.name','asc')
                 ->paginate(10);
-                dd($usuarios);
+
                 return view('seguridad.usuario.index',["usuarios"=>$usuarios,"searchText"=>$query]);
             }
 
