@@ -8,7 +8,7 @@
                 <div class="col-lg-8 p-r-0 title-margin-right">
                     <div class="page-header">
                         <div class="page-title">
-                            <h1>Hello, <span>Welcome Here</span></h1>
+                            <h1>Nuevo Bien</h1>
                         </div>
                     </div>
                 </div>
@@ -18,15 +18,10 @@
 
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-title">
-                            <h4>Input Style</h4>
-
-                        </div>
                         <div class="card-body">
                             <div class="basic-form">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <h3>Nuevo Bien</h3>
                                         @if (count($errors)>0)
                                         <div class="alert alert-danger">
                                             <ul>
