@@ -5,6 +5,7 @@ namespace activofijo\Http\Controllers;
 use DB;
 
 use Carbon\Carbon;
+use activofijo\Bien;
 use activofijo\Revaluo;
 use activofijo\Operador;
 use activofijo\Log_Change;
