@@ -56,15 +56,15 @@ class RevaluoController extends Controller
         $rev->Descripcion = $request->get('Descripcion');
         $rev->save();
 
+        $sql = "SELECT bien.CodBien as id
+                    FROM revisiontecnica,bien
+                    WHERE revisiontecnica.CodBien = bien.CodBien and revisiontecnica.NroRevision = ?;";
 
-        // $custodio = Bien::findOrFail($id);
-        // $custodio->CodCustodio = $request->get('codigo');
-    	// $custodio->Nombre = $request->get('nombre');
-    	// $custodio->Apellido = $request->get('apellido');
-    	// $custodio->Telefono = $request->get('telefono');
-        // $custodio->CodDepartamento = $request->get('departamento');
-        // $custodio->update();
+        $consulta = DB::select($sql,array($request->get('NroRevision')));
 
+        $ActualizarValor = Bien::findOrFail($consulta[0]->id);
+        $ActualizarValor->NuevoValorRevaluo = $request->get('Monto');
+        $ActualizarValor->update();
 
         $sql = "SELECT max(id) as id
         FROM log_change;";

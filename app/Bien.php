@@ -23,7 +23,7 @@ class Bien extends Model
     'UbicacionAlmacen' ,
     'CodCategoria',
     'CodRubro',
-    'NuevoValorRevalue'
+    'NuevoValorRevaluo'
     ];
 
     protected $guarded =[
