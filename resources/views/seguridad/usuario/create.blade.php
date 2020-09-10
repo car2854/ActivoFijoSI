@@ -35,43 +35,32 @@
                                     {!!Form::open(array('url'=>'seguridad/usuario','method'=>'POST','autocomplete'=>'off'))!!}
                                     {{Form::token()}}
 
-
-                                        <div class="form-group">
-                                            <label for="Estado">Estado</label>
-                                            <input type="text" name="Estado" class="form-control" placeholder="Estado...">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="name">{{ __('Nombre') }}</label>
+                                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email">{{ __('E-Mail ') }}</label>
+                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="Monto">Monto</label>
-                                            <input type="text" name="Monto" class="form-control" placeholder="Monto...">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="password">{{ __('Password') }}</label>
+                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password-confirm">{{ __('Confirmar Password') }}</label>
+                                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div class="form-group col-6">
-                                            <label for="name">{{ __('Nombre') }}</label>
-
-                                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                        </div>
-
-                                        <div class="form-group col-6">
-                                            <label for="email">{{ __('E-Mail ') }}</label>
-
-                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="password">{{ __('Password') }}</label>
-
-                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="password-confirm">{{ __('Confirmar Password') }}</label>
-
-                                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-
-                                        </div>
 
                                         <!--
                                         Desde aqui la modificacion
@@ -79,13 +68,11 @@
 
                                         <div class="form-group">
                                             <label>Rol</label>
-
                                             <select class="form-control" name="rol">
                                                 @foreach($roles as $key => $value)
                                                     <option value="{{$value}}">{{$value}}</option>
                                                 @endforeach
                                             </select>
-
                                         </div>
 
 
