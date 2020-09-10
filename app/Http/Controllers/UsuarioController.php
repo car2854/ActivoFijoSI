@@ -58,7 +58,6 @@ public function __construct(){
 
     public function store(UsuarioFormRequest $request){
 
-        dd($request->rol);
         $sql = "SELECT max(id) as id
         FROM users;";
         $consulta = DB::select($sql);
