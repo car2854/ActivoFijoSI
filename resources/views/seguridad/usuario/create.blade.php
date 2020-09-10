@@ -63,12 +63,12 @@
                                         <!--
                                             Desde aqui la modificacion
                                         -->
-                                        {{ $roles }}
+
                                         <div class="form-group">
                                             <label>Rol</label>
                                             <select class="form-control" name="rol">
                                                 @foreach($roles as $key => $value)
-                                                <option value="{{$value}}">{{$value}}</option>
+                                                <option value="{{$value->id}}">{{$value}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
