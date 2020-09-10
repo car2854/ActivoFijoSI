@@ -63,7 +63,7 @@
                                         <!--
                                             Desde aqui la modificacion
                                         -->
-
+                                        {{ $roles }}
                                         <div class="form-group">
                                             <label>Rol</label>
                                             <select class="form-control" name="rol">
