@@ -2,20 +2,21 @@
 
 namespace activofijo\Http\Controllers;
 
+use DB;
+
+use Carbon\Carbon;
+use activofijo\Bien;
+use activofijo\Rubro;
+use activofijo\Almacen;
+use activofijo\Categoria;
+use activofijo\Log_Change;
+use activofijo\Departamento;
 use Illuminate\Http\Request;
 
-use DB;
-use activofijo\Bien;
-use activofijo\Categoria;
-use activofijo\Rubro;
-use activofijo\Departamento;
-use activofijo\Almacen;
-use Illuminate\Support\Facades\Redirect;
-use activofijo\Http\Requests\BienFormRequest;
-
-use activofijo\Log_Change;
 use Illuminate\Auth\SessionGuard;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Redirect;
+use activofijo\Http\Controllers\Controller;
+use activofijo\Http\Requests\BienFormRequest;
 
 
 class BienController extends Controller
@@ -51,7 +52,6 @@ class BienController extends Controller
     public function create(){
     	$rubros = DB::table('rubro')->get();
         $categorias = DB::table('categoria')->get();
-        dd($categorias);
         $departamentos = DB::table('departamento')->where('Estado','=','1')->get();
         $almacenes = DB::table('almacen')->where('Estado','=','1')->get();
     	return view("bienes.bien.create",["rubros"=>$rubros, "categorias"=>$categorias,"departamentos"=>$departamentos,'almacenes'=>$almacenes]);
