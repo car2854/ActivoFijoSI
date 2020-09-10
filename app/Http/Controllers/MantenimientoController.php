@@ -42,57 +42,57 @@ class MantenimientoController extends Controller
     return view("RevisionTecnica.Mantenimiento.Create",["NroR"=>$NroR]);
   }
 
-  public function store(MantenimientoFormRequest $request){
+    public function store(MantenimientoFormRequest $request){
 
-    $sql = "SELECT max(NroMantenimiento) as id
-    FROM mantenimiento;";
-    $consulta = DB::select($sql);
+        $sql = "SELECT max(NroMantenimiento) as id
+        FROM mantenimiento;";
+        $consulta = DB::select($sql);
 
-    $fechaInicio = $request->get('FechaInicio');
-    $fechaFin = $request->get('FechaFinalizo');
+        $fechaInicio = $request->get('FechaInicio');
+        $fechaFin = $request->get('FechaFinalizo');
 
-    $anioI = substr($fechaInicio,0,4);
-    $mesI = substr($fechaInicio,5,2);
-    $diaI = substr($fechaInicio,8,2);
-    $fechaInicio = $anioI . '-' . $mesI . '-' . $diaI;
+        $anioI = substr($fechaInicio,0,4);
+        $mesI = substr($fechaInicio,5,2);
+        $diaI = substr($fechaInicio,8,2);
+        $fechaInicio = $anioI . '-' . $mesI . '-' . $diaI;
 
-    $anioF = substr($fechaFin,0,4);
-    $mesF = substr($fechaFin,5,2);
-    $diaF = substr($fechaFin,8,2);
-    $fechaFin = $anioF . '-' . $mesF . '-' . $diaF;
-
-
-    $mant=new mantenimiento;
-    $mant->NroMantenimiento = $consulta[0]->id + 1;
-    $mant->NroRevision = $request->get('NroRevision');
-    $mant->Problema = $request->get('Problema');
-    $mant->Solucion = $request->get('Solucion');
-    $mant->FechaInicio = $fechaInicio;
-    $mant->FechaFinalizo = $fechaFin;
-    $mant->HoraIncio = $request->get('HoraInicio');
-    $mant->HoraFinalizo = $request->get('HoraFinalizo');
-    $mant->Duraccion = $request->get('Duraccion');
-    $mant->Costo = $request->get('Costo');
-    $mant->save();
+        $anioF = substr($fechaFin,0,4);
+        $mesF = substr($fechaFin,5,2);
+        $diaF = substr($fechaFin,8,2);
+        $fechaFin = $anioF . '-' . $mesF . '-' . $diaF;
 
 
-    $sql = "SELECT max(id) as id
-    FROM log_change;";
-    $consulta = DB::select($sql);
+        $mant=new mantenimiento;
+        $mant->NroMantenimiento = $consulta[0]->id + 1;
+        $mant->NroRevision = $request->get('NroRevision');
+        $mant->Problema = $request->get('Problema');
+        $mant->Solucion = $request->get('Solucion');
+        $mant->FechaInicio = $fechaInicio;
+        $mant->FechaFinalizo = $fechaFin;
+        $mant->HoraIncio = $request->get('HoraInicio');
+        $mant->HoraFinalizo = $request->get('HoraFinalizo');
+        $mant->Duraccion = $request->get('Duraccion');
+        $mant->Costo = $request->get('Costo');
+        $mant->save();
 
-    $log = new Log_Change;
-    $log->id = $consulta[0]->id + 1;
-    $log->id_user = auth()->user()->id;
-    $log->accion = 'Realizo un mantenimiento';
 
-    $now = Carbon::now();
-    $log->fechaAccion = $now->format('d/m/Y H:i:s');
+        $sql = "SELECT max(id) as id
+        FROM log_change;";
+        $consulta = DB::select($sql);
 
-    $log->save();
+        $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
+        $log->id_user = auth()->user()->id;
+        $log->accion = 'Realizo un mantenimiento';
+
+        $now = Carbon::now();
+        $log->fechaAccion = $now->format('d/m/Y H:i:s');
+
+        $log->save();
 
 
-        return Redirect::to('/RevisionTecnica/revisiontecnica');
-  }
+            return Redirect::to('/RevisionTecnica/revisiontecnica');
+    }
 
   public function show($id){
 
