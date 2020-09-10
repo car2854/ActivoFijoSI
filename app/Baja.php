@@ -13,9 +13,10 @@ class Baja extends Model
     public $timestamps = false;
 
     protected $fillable = [
-      'FechaHora',
-      'Descripcion',
-      'NroRevision'
+    'NroBaja',
+    'FechaHora',
+    'Descripcion',
+    'NroRevision'
     ];
 
     protected $guarded = [

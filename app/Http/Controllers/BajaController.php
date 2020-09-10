@@ -42,7 +42,14 @@ class BajaController extends Controller{
   }
   //almacenar el objeto POST
   public function store(BajaFormRequest $request){
+
+    $sql = "SELECT max(NroBaja) as id
+    FROM baja;";
+    $consulta = DB::select($sql);
+
+
     $baja=new baja;
+    $baja->NroBaja = $consulta[0]->id + 1;
     $baja->NroRevision = $request->get('NroRevision');
     $baja->Descripcion = $request->get('Descripcion');
     $now = new \DateTime();
@@ -54,21 +61,26 @@ class BajaController extends Controller{
     ->where('revisiontecnica.NroRevision','=',$request->get('NroRevision'))
     ->get('CodBien')->first();
 
-    //Bien es tu modelo BIEN, no te olvides importar 
-    //use App\Bien;
-    //no se que nombre pusiste a tu modelo, pero lo cambias
+
     $bien=Bien::findOrFail($b->CodBien);
     $bien->EstadoBien = "inactivo";
     $bien->update();
 
-      $log = new Log_Change;
-        $log->id_user = auth()->user()->id;
-        $log->accion = 'Dio de baja un bien';
-        
-        $now = Carbon::now();
-        $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
-        $log->save();
+
+    $sql = "SELECT max(id) as id
+    FROM log_change;";
+    $consulta = DB::select($sql);
+
+    $log = new Log_Change;
+    $log->id = $consulta[0]->id + 1;
+    $log->id_user = auth()->user()->id;
+    $log->accion = 'Dio de baja un bien';
+
+    $now = Carbon::now();
+    $log->fechaAccion = $now->format('d/m/Y H:i:s');
+
+    $log->save();
 
 
 
@@ -86,7 +98,7 @@ class BajaController extends Controller{
   }
 
   public function update(BajaFormRequest $request, $id){
-    
+
     return Redirect::to('RevisionTecnica/Baja');
   }
 
@@ -94,11 +106,11 @@ class BajaController extends Controller{
 
     return Redirect::to('RevisionTecnica/Baja');
   }
-  
+
   public function crearPDF(){
 
       $vistaUrl = "reportes.baja";
-      
+
       //consulta
      $baja=DB::table('revisiontecnica')
       ->join('bien','bien.CodBien','=','revisiontecnica.CodBien')
@@ -109,7 +121,7 @@ class BajaController extends Controller{
       ->orderBy('revisiontecnica.CodBien','desc')
       ->get();
       //fin consulta
-      
+
       $data = $baja;
       $date = date('Y-m-d');
       $view = \View::make($vistaUrl, compact('data','date'))->render();
