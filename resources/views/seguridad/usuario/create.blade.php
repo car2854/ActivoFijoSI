@@ -35,6 +35,17 @@
                                     {!!Form::open(array('url'=>'seguridad/usuario','method'=>'POST','autocomplete'=>'off'))!!}
                                     {{Form::token()}}
 
+
+                                        <div class="form-group">
+                                            <label for="Estado">Estado</label>
+                                            <input type="text" name="Estado" class="form-control" placeholder="Estado...">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Monto">Monto</label>
+                                            <input type="text" name="Monto" class="form-control" placeholder="Monto...">
+                                        </div>
+
                                         <div class="form-group col-6">
                                             <label for="name">{{ __('Nombre') }}</label>
 
