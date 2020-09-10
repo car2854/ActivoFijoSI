@@ -2,15 +2,16 @@
 
 namespace activofijo\Http\Controllers;
 
-use Illuminate\Http\Request;
 use DB;
-use Illuminate\Support\Facades\Redirect;
-use activofijo\Http\Requests\DepartamentoFormRequest;
+use auth;
+use Carbon\Carbon;
+use activofijo\Log_Change;
 use activofijo\Departamento;
 
-use activofijo\Log_Change;
+use Illuminate\Http\Request;
 use Illuminate\Auth\SessionGuard;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Redirect;
+use activofijo\Http\Requests\DepartamentoFormRequest;
 
 
 
@@ -38,7 +39,7 @@ class DepartamentoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $ubicacion=DB::table('ubicacion')->get();
         return view("ubicacion.dpto.create",["ubicacion"=>$ubicacion]);
     }
@@ -50,7 +51,7 @@ class DepartamentoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(DepartamentoFormRequest $request)
-    {   
+    {
         $count = DB::table('departamento')->count();
         $mayuscula = strtoupper($request->get('descripcion'));
         $dpto = new Departamento;
@@ -58,11 +59,11 @@ class DepartamentoController extends Controller
         $dpto->Descripcion = $mayuscula;
         $dpto->CodUbicacion = $request->get('codubicacion');
         $dpto->save();
-    
+
             $log = new Log_Change;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Registro un nuevo departamento';
-        
+
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
@@ -72,13 +73,13 @@ class DepartamentoController extends Controller
         //dd($request->all());
     }
 
- 
+
     public function show($id)
     {
         return view("ubicacion.dpto.show",["dpto"=>Departamento::findOrFail($id)]);
     }
 
-   
+
     public function edit($id)
     {
         $dpto = Departamento::findOrFail($id);
@@ -86,7 +87,7 @@ class DepartamentoController extends Controller
         return view("ubicacion.dpto.edit",["departamento"=>$dpto,"ubicacion"=>$ubicacion]);
     }
 
-    
+
     public function update(DepartamentoFormRequest $request, $id)
     {
         $dpto = Departamento::findOrFail($id);
@@ -94,32 +95,32 @@ class DepartamentoController extends Controller
         $dpto->Descripcion = $mayuscula;
         $dpto->CodUbicacion = $request->get('codubicacion');
         $dpto->update();
-     
-     
+
+
             $log = new Log_Change;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Actualizo el registro de un departamento';
-        
+
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
         $log->save();
 
-     
+
         return Redirect::to('ubicacion/departamento');
     }
 
-    
+
     public function destroy($id)
     {
         $dpto = Departamento::where('CodDepartamento','=',$id)->first();
         $dpto->delete();
-        
-        
+
+
             $log = new Log_Change;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Elimino el registro de un departamento';
-        
+
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
@@ -127,8 +128,8 @@ class DepartamentoController extends Controller
 
         return Redirect::to('ubicacion/departamento');
     }
-    
-    
+
+
     public function crearPDF(){
 
       $vistaUrl = "reportes.departamento";

@@ -4,6 +4,7 @@ namespace activofijo\Http\Controllers;
 
 use DB;
 
+use auth;
 use Carbon\Carbon;
 use activofijo\Bien;
 use activofijo\Rubro;
@@ -11,8 +12,8 @@ use activofijo\Almacen;
 use activofijo\Categoria;
 use activofijo\Log_Change;
 use activofijo\Departamento;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
 use Illuminate\Auth\SessionGuard;
 use Illuminate\Support\Facades\Redirect;
 use activofijo\Http\Controllers\Controller;
