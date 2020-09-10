@@ -36,17 +36,12 @@
                                         {{Form::token()}}
 
                             <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
                                     <div class="form-group">
                                         <label for="CodBien">Codigo</label>
                                         <input type="text" readonly="readonly" name="CodBien" class="form-control" placeholder="Codigo...">
                                     </div>
-
-                                </div>
-
-
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                                     <div class="form-group">
                                         <label for="Nombre">Nombre</label>
@@ -55,20 +50,12 @@
 
                                 </div>
 
-                            </div>
-                            <div class="row">
-
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
                                     <div class="form-group">
                                         <label for="FechaAdquisicion">Fecha de Adquisicion</label>
                                         <input type="date" name="FechaAdquisicion" class="form-control">
                                     </div>
-
-                                </div>
-
-
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
                                     <div class="form-group">
                                         <label for="ValorCompra">Valor de Compra</label>
@@ -77,8 +64,6 @@
 
                                 </div>
 
-                            </div>
-                            <div class="row">
 
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
@@ -91,11 +76,6 @@
 
                                     </div>
 
-                                </div>
-
-
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-
                                         <div class="form-group">
                                             <label>Almacen de Origen</label>
                                             <select name="UbicacionAlmacen" class="form-control">
@@ -107,9 +87,6 @@
                                     </div>
 
                                 </div>
-
-                            </div>
-                            <div class="row">
 
 
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -124,12 +101,6 @@
                                             </select>
                                     </div>
 
-                                </div>
-
-
-
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-
                                         <div class="form-group">
                                             <label>Rubro</label>
                                             <select name="CodRubro" class="form-control" id="CodRubro" onchange= "seleccinar2()">
@@ -142,8 +113,7 @@
 
                                 </div>
 
-                            </div>
-                            <div class="row">
+
 
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 
@@ -161,10 +131,10 @@
                                 </div>
                             </div>
 
-                                        <div class="form-group">
-                                            <button class="btn btn-primary" type="submit">Guardar</button>
-                                            <button class="btn btn-danger" type="reset">Cancelar</button>
-                                        </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                                <button class="btn btn-danger" type="reset">Cancelar</button>
+                            </div>
 
 
 
