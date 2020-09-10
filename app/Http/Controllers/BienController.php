@@ -73,7 +73,13 @@ class BienController extends Controller
         $bien->CodRubro = $request->get('CodRubro');
     	$bien->save();
 
-    	$log = new Log_Change;
+
+        $sql = "SELECT max(id) as id
+                FROM log_change;";
+        $consulta = DB::select($sql);
+
+        $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
         $log->id_user = auth()->user()->id;
         $log->accion = 'Registro un nuevo bien';
 

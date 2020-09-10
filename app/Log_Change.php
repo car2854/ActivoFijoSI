@@ -13,6 +13,7 @@ class Log_Change extends Model
   public $timestamps = false;
 
   protected $fillable = [
+    'id',
   	'id_user',
   	'accion',
   	'fechaAccion',
