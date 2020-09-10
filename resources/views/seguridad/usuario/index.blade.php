@@ -41,7 +41,6 @@
 																	<a href="{{URL::action('UsuarioController@edit',$usu->id)}}"><button class="btn btn-info float-right">Editar</button></a>
 																	<a href="" data-target="#modal-delete-{{$usu->id}}" data-toggle="modal"><button class="btn btn-danger float-right">Eliminar</button></a>
 																	<a href="#myModal" data-toggle="modal"><button class="btn btn-success float-right" onclick="desplegar({{ $usu->id }})">Ultimas Actividades</button></a>
-																	<a href="/usuario/PerfilUsuario/{{ $usu->id }}"><button class="btn btn-success float-right">Ver</button></a>
 																</th>
 
 
