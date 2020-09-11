@@ -75,6 +75,7 @@ class TranferenciaController extends Controller
         $tranferencia->CodCustodioDestino = $request->get('cusdestino');
         $tranferencia->CodResponsable = $request->get('responsable');
         $tranferencia->CodBien = $request->get('bien');
+        $tranferencia->EstadoBien = "Nuevo";
         $tranferencia->save();
 
 

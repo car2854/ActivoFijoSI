@@ -17,7 +17,8 @@ class Tranferencia extends Model
         'CodCustodioOrigen',
         'CodCustodioDestino',
         'CodResponsable',
-        'CodBien'
+        'CodBien',
+        'EstadoBien',
     ];
 
     protected $guarded =[
