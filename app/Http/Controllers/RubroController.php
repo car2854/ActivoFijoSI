@@ -43,8 +43,14 @@ class RubroController extends Controller
     }
     public function store(RubroFormRequest $request){
 
+        $sql = "SELECT max(CodRubro) as id
+        FROM rubro;";
+        $consulta = DB::select($sql);
+
+
         $mayuscula = strtoupper($request->get('Descripcion'));
         $rubro = new rubro;
+        $rubro->CodRubro = $consulta[0]->id + 1;
         $rubro->Descripcion = $mayuscula;
         $rubro->vidautil = $request->get('vidautil');
         $coeficiente = (100) / $request->get('vidautil');

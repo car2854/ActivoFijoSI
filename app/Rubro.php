@@ -13,6 +13,7 @@ class Rubro extends Model
     public $timestamps=false;
 
     protected $fillable =[
+        'CodRubro'.
         'Descripcion',
         'vidautil',
         'coeficiente',
@@ -21,6 +22,6 @@ class Rubro extends Model
     ];
 
     protected $guarded =[
-        
+
     ];
 }
