@@ -34,15 +34,20 @@
 
                                     {!!Form::open(array('url'=>'almacen/rubro','method'=>'POST','autocomplete'=>'off'))!!}
                                     {{Form::token()}}
-                                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <label for="descripcion">Nombre del Rubro</label>
-                                        <input type="text" name="descripcion" class="form-control" placeholder="Nombre...">
+
+
+                                    <div class="row col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <label for="descripcion">Nombre del Rubro</label>
+                                            <input type="text" name="descripcion" class="form-control" placeholder="Nombre...">
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <label for="vidautil">Vida Util (años)</label>
+                                            <input type="number" class="form-control" name="vidautil" >
+                                        </div>
                                     </div>
 
-                                    <div class="form-group  col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <label for="vidautil">Vida Util (años)</label>
-                                        <input type="number" class="form-control" name="vidautil" >
-                                    </div>
+
 
                                     <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
