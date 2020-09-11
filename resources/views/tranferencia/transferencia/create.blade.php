@@ -39,7 +39,7 @@
                                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                             <div class="form-group">
                                                     <label for="nrotransferencia">Nro de Transferencia</label>
-                                                    <input type="text" name="nrotransferencia" required value="{{old('nombre')}}" class="form-control" placeholder="Nombre...">
+                                                    <input type="text" name="nrotransferencia" class="form-control" placeholder="Numero Tranferencia...">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
