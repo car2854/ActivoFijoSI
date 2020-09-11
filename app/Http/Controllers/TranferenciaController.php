@@ -69,7 +69,7 @@ class TranferenciaController extends Controller
 
        // $mayuscula = strtoupper($request->get('nombre'));
         $tranferencia = new Tranferencia;
-        $tranferencia->NroTransferencia = $request->get('nrotransferencia');
+        $tranferencia->NroTranferencia = $request->get('nrotransferencia');
         $tranferencia->FechaTranferencia = $request->get('date');
         $tranferencia->CodCustodioOrigen = $request->get('cusorigen');
         $tranferencia->CodCustodioDestino = $request->get('cusdestino');
