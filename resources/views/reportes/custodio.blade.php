@@ -27,7 +27,7 @@
 <body>
 
 	<h1>Reporte Custodio</h1>
-	<p></p>
+
 	<table>
 		<tr>
 			<th style="width: 70px">Codigo</th>
