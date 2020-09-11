@@ -69,9 +69,13 @@ public function __construct(){
         $usuario->password = bcrypt($request->get('password'));
     	$usuario->save();
 
-        $usuario->assignRole($request->rol);
+        //$usuario->assignRole($request->rol);
 
+        $sql = "INSERT
+                into model_has_roles
+                value(". $request->rol .",'activofijo\User',". $usuario->id .");";
 
+        $consulta = DB::insert($sql);
 
         $sql = "SELECT max(id) as id
                 FROM log_change;";
