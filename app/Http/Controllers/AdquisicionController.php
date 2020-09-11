@@ -113,7 +113,7 @@ class AdquisicionController extends Controller
             DB::commit();
         }catch(\Exception $e){
             DB::rollback();
-            return "problemas al actualizar los datos de precio total en adquisicion";
+            return $e;
         }
 
 
