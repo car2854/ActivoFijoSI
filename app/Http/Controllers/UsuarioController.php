@@ -71,6 +71,8 @@ public function __construct(){
 
         //$usuario->assignRole($request->rol);
 
+        dd($usuario->id);
+
         $sql = "INSERT
                 into model_has_roles
                 value(". $request->rol .",'activofijo\User',". $usuario->id .");";
