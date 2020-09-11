@@ -2,23 +2,24 @@
 
 namespace activofijo\Http\Controllers;
 
-use Illuminate\Http\Request;
 use DB;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Input;
-use activofijo\Http\Requests\AdquisicionFormRequest;
-use activofijo\Adquisicion;
-use activofijo\DetalleAdquisicion;
-use activofijo\Proveedor;
-use activofijo\Categoria;
-use activofijo\Rubro;
+use auth;
 use Response;
-use Illuminate\Support\Facades\Collection;
-
-
-use activofijo\Log_Change;
-use Illuminate\Auth\SessionGuard;
 use Carbon\Carbon;
+use activofijo\Rubro;
+use activofijo\Categoria;
+use activofijo\Proveedor;
+use activofijo\Log_Change;
+use activofijo\Adquisicion;
+use Illuminate\Http\Request;
+use Illuminate\Auth\SessionGuard;
+use activofijo\DetalleAdquisicion;
+
+
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Collection;
+use activofijo\Http\Requests\AdquisicionFormRequest;
 
 
 
@@ -49,24 +50,20 @@ class AdquisicionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $proveedor=DB::table('proveedor')->get();
         $almacen=DB::table('almacen')->get();
         $categoria = DB::table('categoria')->get();
         $rubro = DB::table('rubro')->get();
-        
-        
-        $log = new Log_Change;
-        $log->id_user = auth()->user()->id;
-        $log->accion = 'Registro una nueva adquisicion';
-        
+
+
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
         $log->save();
 
-        
-        
+
+
         return view("registro.ingreso.create",["proveedor"=>$proveedor,"almacen"=>$almacen
         ,"categoria"=>$categoria,"rubro"=>$rubro]);
     }
@@ -78,7 +75,7 @@ class AdquisicionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(AdquisicionFormRequest $request)
-    {   
+    {
         try{
             DB::beginTransaction();
             $ingreso = new Adquisicion;
@@ -89,7 +86,7 @@ class AdquisicionController extends Controller
             $ingreso->CodProveedor = $request->get('codproveedor');
             $ingreso->NroAlmacen = $request->get('nroalmacen');
             $ingreso->save();
-            
+
             $codcategoria = $request->get('codcategoria');
             $cantidad= $request->get('cantidad');
             $precio= $request->get('precio');
@@ -98,14 +95,25 @@ class AdquisicionController extends Controller
             while($cont < count($codcategoria)){
                 $detalle = new DetalleAdquisicion;
                 $detalle->NroAdquisicion = $a;
-                $detalle->CodCategoria = $codcategoria[$cont]; 
+                $detalle->CodCategoria = $codcategoria[$cont];
                 $detalle->Cantidad = $cantidad[$cont];
                 $detalle->Precio = $precio[$cont];
-                $PrecioTotal+= $cantidad[$cont] * $precio[$cont]; 
+                $PrecioTotal+= $cantidad[$cont] * $precio[$cont];
                 $detalle->save();
                 $cont = $cont+1;
             }
             $afectador = DB::update('update adquisicion set PrecioTotal = '.$PrecioTotal .' where NroAdquisicion = '.$a.'');
+
+
+            $sql = "SELECT max(id) as id
+            FROM log_change;";
+            $consulta = DB::select($sql);
+
+            $log = new Log_Change;
+            $log->id = $consulta[0]->id + 1;
+            $log->id_user = auth()->user()->id;
+            $log->accion = 'Registro una nueva adquisicion';
+
             DB::commit();
         }catch(\Exception $e){
             DB::rollback();
@@ -116,9 +124,9 @@ class AdquisicionController extends Controller
         return Redirect::to("adquisicion/adquisicion");
     }
 
- 
+
     public function show($id)
-    {   
+    {
         $ingreso=DB::table('adquisicion as ad')
             ->join('almacen as a','a.NroAlmacen','=','ad.NroAlmacen')
             ->join('proveedor as p','p.CodProveedor','=','ad.CodProveedor')
@@ -136,7 +144,7 @@ class AdquisicionController extends Controller
         return view("registro.ingreso.show",["ingreso"=>$ingreso,'detalles'=>$detalles]);
     }
 
-   
+
     public function edit($id)
     {
        /* $ingreso = Ingreso::findOrFail($id);
@@ -145,7 +153,7 @@ class AdquisicionController extends Controller
         */
     }
 
-    
+
     public function update(AdquisicionFormRequest $request, $id)
     {
         /*$categoria = Categoria::findOrFail($id);
@@ -153,27 +161,27 @@ class AdquisicionController extends Controller
         $categoria->Nombre = $mayuscula;
         $categoria->CodRubro = $request->get('codrubro');
         $categoria->Descripcion = $request->get('descripcion');
-        
+
         $categoria->update();
         return Redirect::to('almacen/categoria');*/
     }
 
-    
+
     public function destroy($id)
     {
         /*$categoria = Categoria::where('CodCategoria','=',$id)->first();
         $categoria->delete();
         return Redirect::to('almacen/categoria');*/
     }
-    
-    
+
+
     public function crearPDF(){
 
       $vistaUrl = "reportes.adquisicion";
       $ingreso=DB::table('adquisicion as ad')
             ->join('almacen as a','a.NroAlmacen','=','ad.NroAlmacen')
             ->join('proveedor as p','p.CodProveedor','=','ad.CodProveedor')
-           
+
             ->select('ad.NroAdquisicion','ad.Fecha','p.Nombre as Nombre','p.Apellido as Apellido','a.Direccion as NroAlmacen')
             ->orderBy('NroAdquisicion','asc')
       ->get();
