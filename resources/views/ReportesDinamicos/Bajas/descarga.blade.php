@@ -8,12 +8,24 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="css/style.css">
+	<style>
+        table{
+            font-family: Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th{
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 5px 10px;
+        }
+        tr:nth-child(even){
+            background-color: #dddddd;
+        }
+    </style>
 </head>
 <body>
-	<div id="page-wrap">
 	<h1>Reporte Almacen</h1>
-	<p></p>
 	<table>
 		<tr>
 			<th>Codigo Bien</th>
@@ -35,6 +47,5 @@
     <?php  } ?>
 	</table>
   <p><h4>Fecha <?=  $date; ?></h4></p>
-  </div>
 </body>
 </html>
