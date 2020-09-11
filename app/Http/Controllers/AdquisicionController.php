@@ -79,6 +79,12 @@ class AdquisicionController extends Controller
             $ingreso->NroAlmacen = $request->get('nroalmacen');
             $ingreso->save();
 
+
+            $sql = "SELECT max(NroDetalleAdquisicion) as id
+            FROM detalleadquisicion;";
+            $consulta = DB::select($sql);
+            $valorId = $consulta[0]->id + 1;
+
             $codcategoria = $request->get('codcategoria');
             $cantidad= $request->get('cantidad');
             $precio= $request->get('precio');
@@ -86,6 +92,7 @@ class AdquisicionController extends Controller
             $PrecioTotal = 0;
             while($cont < count($codcategoria)){
                 $detalle = new DetalleAdquisicion;
+                $detalle->NroDetalleAdquisicion = $valorId;
                 $detalle->NroAdquisicion = $a;
                 $detalle->CodCategoria = $codcategoria[$cont];
                 $detalle->Cantidad = $cantidad[$cont];
@@ -93,6 +100,7 @@ class AdquisicionController extends Controller
                 $PrecioTotal+= $cantidad[$cont] * $precio[$cont];
                 $detalle->save();
                 $cont = $cont+1;
+                $valorId = $valorId + 1;
             }
             $afectador = DB::update('update adquisicion set PrecioTotal = '.$PrecioTotal .' where NroAdquisicion = '.$a.'');
 

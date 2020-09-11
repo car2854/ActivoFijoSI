@@ -12,6 +12,7 @@ class DetalleAdquisicion extends Model
     public $timestamps=false;
 
     protected $fillable =[
+        'NroDetalleAdquisicion',
         'Cantidad',
         'Precio',
         'NroAdquisicion',
@@ -19,6 +20,6 @@ class DetalleAdquisicion extends Model
     ];
 
     protected $guarded =[
-        
+
     ];
 }
