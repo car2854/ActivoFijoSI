@@ -12,6 +12,7 @@ class Tranferencia extends Model
     public $timestamps=false;
 
     protected $fillable =[
+        'NroTranferencia',
         'FechaTransferencia',
         'CodCustodioOrigen',
         'CodCustodioDestino',
@@ -20,6 +21,6 @@ class Tranferencia extends Model
     ];
 
     protected $guarded =[
-        
+
     ];
 }
