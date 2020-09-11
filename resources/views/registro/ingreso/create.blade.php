@@ -99,49 +99,45 @@
                                         </div>
                                 </div>
 
-
-
-                                    <div class="row col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                                            <div class="panel panel-primary">
-                                                <div class="panel-body">
-
-                                                            <br>
-                                                            <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xs-12">
-                                                                <div class="form-group">
-                                                                    <button type="button" class="btn btn-primary" id="bt_add"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                                                                <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
-                                                                    <thead>
-                                                                        <th>Opciones</th>
-                                                                        <th>Categoria</th>
-                                                                        <th>cantidad</th>
-                                                                        <th>precio</th>
-                                                                        <th>subtotal</th>
-                                                                    </thead>
-                                                                    <tfoot>
-                                                                        <th>Total</th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th><h4 id="total">S/0.00</h4></th>
-                                                                    </tfoot>
-                                                                    <tbody>
-
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                </div>
-                                            </div>
-
-                                        <div class="form-group col-md-6" id="guardar">
-                                                <input name="_token" value="{{ csrf_token() }}" type="hidden"></input>
-                                                <button type="submit"  class="btn btn-primary">Guardar</button>
-                                                <button type="reset" class="btn btn-danger">Cancelar</button>
-                                        </div>
+                                <br>
+                                <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xs-12">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary" id="bt_add"><i class="fa fa-plus-circle" aria-hidden="true">Agregar</i></button>
                                     </div>
-                                    {!!Form::close()!!}
+                                </div>
+
+                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                    <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
+                                        <thead>
+                                            <th>Opciones</th>
+                                            <th>Categoria</th>
+                                            <th>cantidad</th>
+                                            <th>precio</th>
+                                            <th>subtotal</th>
+                                        </thead>
+                                        <tfoot>
+                                            <th>Total</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th><h4 id="total">S/0.00</h4></th>
+                                        </tfoot>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                                <div class="row col-lg-12 col-sm-12 col-md-12 col-xs-12">
+
+                                    <div class="form-group col-md-6" id="guardar">
+                                        <input name="_token" value="{{ csrf_token() }}" type="hidden"></input>
+                                        <button type="submit"  class="btn btn-primary">Guardar</button>
+                                        <button type="reset" class="btn btn-danger">Cancelar</button>
+                                    </div>
+                                </div>
+                                {!!Form::close()!!}
 
 
                                 </div>
