@@ -9,10 +9,10 @@
                         <li>{{$error}}</li>
                     @endforeach
                 </ul>
-            </div>                
+            </div>
             @endif
     </div>
-    
+
     {!!Form::open(array('url'=>'adquisicion/adquisicion','method'=>'POST','autocomplete'=>'off'))!!}
     {{Form::token()}}
     <div class="row col-lg-12 col-sm-12 col-md-12 col-xs-12">
@@ -50,7 +50,7 @@
             </div>
     </div>
 
-<div class="row col-lg-12 col-sm-12 col-md-12 col-xs-12"> 
+<div class="row col-lg-12 col-sm-12 col-md-12 col-xs-12">
         <div class="panel panel-primary">
             <div class="panel-body">
                     <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
@@ -98,13 +98,13 @@
                                     <th><h4 id="total">S/0.00</h4></th>
                                 </tfoot>
                                 <tbody>
-                
+
                                 </tbody>
                             </table>
-                        </div>  
+                        </div>
             </div>
-        </div>    
-        
+        </div>
+
     <div class="form-group col-md-6" id="guardar">
             <input name="_token" value="{{ csrf_token() }}" type="hidden"></input>
             <button type="submit"  class="btn btn-primary">Guardar</button>
@@ -128,19 +128,19 @@
     limpiar();
 
     function agregar(){
-        
+
         idcategoria=$("#pcodcategoria").val();
-        
+
         categoria = $("#pcodcategoria option:selected").text();
         cantidad = $("#pcantidad").val();
         precio = $("#pprecio").val();
 
-        if(idcategoria !="" && cantidad != "" && cantidad >0 
+        if(idcategoria !="" && cantidad != "" && cantidad >0
         && precio != "" && precio > 0){
-            
+
             subtotal[cont]= (cantidad*precio);
             total=total+subtotal[cont];
-            
+
             var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+')">X</button></td><td><input type="hidden" name="codcategoria[]" value="'+idcategoria+'">'+categoria+'</td><td><input type="number" name="cantidad[]" value="'+cantidad+'"></td><td><input type="number" name="precio[]" value="'+precio+'"></td><td>'+subtotal[cont]+'</td></tr>';
             cont++;
             limpiar();
@@ -150,7 +150,7 @@
             $("#detalles").append(fila);
         }
 
-        
+
     }
 
     function eliminar(index){

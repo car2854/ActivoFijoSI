@@ -56,14 +56,6 @@ class AdquisicionController extends Controller
         $categoria = DB::table('categoria')->get();
         $rubro = DB::table('rubro')->get();
 
-
-        $now = Carbon::now();
-        $log->fechaAccion = $now->format('d/m/Y H:i:s');
-
-        $log->save();
-
-
-
         return view("registro.ingreso.create",["proveedor"=>$proveedor,"almacen"=>$almacen
         ,"categoria"=>$categoria,"rubro"=>$rubro]);
     }
@@ -113,6 +105,10 @@ class AdquisicionController extends Controller
             $log->id = $consulta[0]->id + 1;
             $log->id_user = auth()->user()->id;
             $log->accion = 'Registro una nueva adquisicion';
+            $now = Carbon::now();
+            $log->fechaAccion = $now->format('d/m/Y H:i:s');
+
+            $log->save();
 
             DB::commit();
         }catch(\Exception $e){
