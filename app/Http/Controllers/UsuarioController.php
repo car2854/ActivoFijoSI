@@ -71,9 +71,11 @@ public function __construct(){
 
         //$usuario->assignRole($request->rol);
 
+        $nuevoId = $consulta[0]->id + 1;
+
         $sql = "INSERT
                 into model_has_roles
-                value(". $request->rol .",'activofijo\User',". $consulta[0]->id + 1 .");";
+                value(". $request->rol .",'activofijo\User',". $nuevoId .");";
 
         $consulta = DB::insert($sql);
 
