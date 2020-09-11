@@ -41,7 +41,7 @@
                                             <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
                                                     <div class="form-group">
                                                             <label for="nroadquisicion">Nro de Ingreso</label>
-                                                            <input type="text" name="nroadquisicion" required value="{{old('nombre')}}" class="form-control" placeholder="Nombre...">
+                                                            <input type="text" name="nroadquisicion" class="form-control" placeholder="Numero de Ingreso...">
                                                     </div>
                                                 </div>
                                             <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
@@ -102,7 +102,7 @@
                                 <br>
                                 <div class="form-group col-lg-2 col-sm-2 col-md-2 col-xs-12">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-primary" id="bt_add"><i class="fa fa-plus-circle" aria-hidden="true">Agregar</i></button>
+                                        <button type="button" class="btn btn-primary" id="bt_add"><i class="fa fa-plus-circle" aria-hidden="true"> Agregar</i></button>
                                     </div>
                                 </div>
 
