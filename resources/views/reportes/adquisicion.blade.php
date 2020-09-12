@@ -4,45 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Reporte Adquisicion</title>
-    <style>
-        table{
-            font-family: Arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-        td, th{
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 5px 10px;
-        }
-        tr:nth-child(even){
-            background-color: #dddddd;
-        }
-    </style>
-</head>
+    <title>REPORTE DE CATEGORIAS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/estilospdf.css">
+  </head>
 <body>
-    <h1>Reporte Adquisicion</h1>
-
-    <table>
-
-		<tr>
-			<th style="width: 70px">Nro</th>
-			<th>Fecha</th>
-			<th>Proveedor</th>
-			<th>Almacen</th>
-		</tr>
-        <?php foreach ($data as $r) { ?>
-            <tr>
-                <td><?= $r->NroAdquisicion; ?></td>
-                <td><?= $r->Fecha; ?></td>
-                <td><?= $r->Nombre; ?></td>
-                <td><?= $r->NroAlmacen; ?></td>
-            </tr>
-        <?php  } ?>
-
-    </table>
-    <p><h4>Fecha <?=  $date; ?></h4></p>
+  <header>
+      <p class="mt-5">--------LISTADO DE INGRESO------</p>
+  </header>
+    <div class="container align-items-center">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center">#NRO</th>
+                <th scope="col" class="text-center">FECHA</th>
+				<th scope="col" class="text-center">PROVEEDOR</th>
+				<th scope="col" class="text-center">ALMACEN</th>
+              </tr>
+            </thead>
+            <tbody>
+				<?php foreach ($data as $r) { ?>
+					<tr>
+						<td class="text-center"><?= $r->NroAdquisicion; ?></td>
+						<td class="text-center"><?= $r->Fecha; ?></td>
+						<td class="text-center"><?= $r->Nombre; ?></td>
+						<td class="text-center"><?= $r->NroAlmacen; ?></td>
+					</tr>
+				<?php  } ?>
+            </tbody>
+          </table>
+    </div>
+    <footer>
+        <p class="mt-3"> FECHA <?=  $date; ?></p>
+    </footer>
 </body>
 </html>
-
