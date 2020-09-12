@@ -48,7 +48,7 @@ class RubroController extends Controller
         $consulta = DB::select($sql);
 
 
-        $mayuscula = strtoupper($request->get('Descripcion'));
+        $mayuscula = strtoupper($request->get('descripcion'));
         $rubro = new rubro;
         $rubro->CodRubro = $consulta[0]->id + 1;
         $rubro->Descripcion = $mayuscula;
