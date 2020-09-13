@@ -1,47 +1,44 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<meta charset='UTF-8'>
-
-	<title>Reporte Tranferencia</title>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<style>
-        table{
-            font-family: Arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-        td, th{
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 5px 10px;
-        }
-        tr:nth-child(even){
-            background-color: #dddddd;
-        }
-    </style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REPORTE DE TRANFERENCIA</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/estilospdf.css">
+  </head>
 <body>
-	<h1>Reporte Tranferencia</h1>
-	<table>
-		<tr>
-			<th style="width: 70px">Numero Tranferencia</th>
-			<th>Fecha</th>
-			<th>Custodio Origen</th>
-			<th>Responsable</th>
-		</tr>
-    <?php foreach ($data as $r) { ?>
-		<tr>
-			<td><?= $r->NroTranferencia; ?></td>
-			<td><?= $r->FechaTranferencia; ?></td>
-			<td><?= $r->nombrec1; ?></td>
-			<td><?= $r->nombrer; ?></td>
-		</tr>
-    <?php  } ?>
-	</table>
-  <p><h4>Fecha <?=  $date; ?></h4></p>
+  <header>
+      <p class="mt-5">--------LISTADO DE TRANFERENCIA------</p>
+  </header>
+    <div class="container align-items-center">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center" style="width: 70px">Numero Tranferencia</th>
+                <th scope="col" class="text-center">Fecha</th>
+                <th scope="col" class="text-center">Custodio Origen</th>
+                <th scope="col" class="text-center">Responsable</th>
+              </tr>
+            </thead>
+            <tbody>
+				<?php foreach ($data as $r) { ?>
+					<tr>
+                        <td class="text-center"><?= $r->NroTranferencia; ?></td>
+                        <td class="text-center"><?= $r->FechaTranferencia; ?></td>
+                        <td class="text-center"><?= $r->nombrec1; ?></td>
+                        <td class="text-center"><?= $r->nombrer; ?></td>
+					</tr>
+				<?php  } ?>
+            </tbody>
+          </table>
+    </div>
+    <footer>
+        <p class="mt-3"> FECHA <?=  $date; ?></p>
+    </footer>
 </body>
 </html>
+
+
+

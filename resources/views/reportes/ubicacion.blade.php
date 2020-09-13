@@ -1,47 +1,41 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<meta charset='UTF-8'>
-
-	<title>Reporte Ubicacion</title>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<style>
-        table{
-            font-family: Arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-        td, th{
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 5px 10px;
-        }
-        tr:nth-child(even){
-            background-color: #dddddd;
-        }
-    </style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REPORTE DE UBICACION</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/estilospdf.css">
+  </head>
 <body>
-	<h1>Reporte Ubicacion</h1>
-	<table>
-		<tr>
-			<th style="width: 70px">Id Ubicacion</th>
-			<th>Edificio</th>
-			<th>Ciudad</th>
-			<th>Pais</th>
-		</tr>
-    <?php foreach ($data as $r) { ?>
-		<tr>
-			<td><?= $r->CodUbicacion; ?></td>
-			<td><?= $r->Edificio; ?></td>
-			<td><?= $r->Ciudad; ?></td>
-			<td><?= $r->Pais; ?></td>
-		</tr>
-    <?php  } ?>
-	</table>
-  <p><h4>Fecha <?=  $date; ?></h4></p>
+  <header>
+      <p class="mt-5">--------LISTADO DE UBICACION------</p>
+  </header>
+    <div class="container align-items-center">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center" style="width: 70px">Id Ubicacion</th>
+                <th scope="col" class="text-center">Edificio</th>
+                <th scope="col" class="text-center">Ciudad</th>
+                <th scope="col" class="text-center">Pais</th>
+              </tr>
+            </thead>
+            <tbody>
+				<?php foreach ($data as $r) { ?>
+					<tr>
+                        <td class="text-center"><?= $r->CodUbicacion; ?></td>
+                        <td class="text-center"><?= $r->Edificio; ?></td>
+                        <td class="text-center"><?= $r->Ciudad; ?></td>
+                        <td class="text-center"><?= $r->Pais; ?></td>
+					</tr>
+				<?php  } ?>
+            </tbody>
+          </table>
+    </div>
+    <footer>
+        <p class="mt-3"> FECHA <?=  $date; ?></p>
+    </footer>
 </body>
 </html>

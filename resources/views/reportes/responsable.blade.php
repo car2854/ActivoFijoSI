@@ -1,50 +1,44 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<meta charset='UTF-8'>
-
-	<title>Reporte Responsable</title>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<style>
-        table{
-            font-family: Arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-        td, th{
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 5px 10px;
-        }
-        tr:nth-child(even){
-            background-color: #dddddd;
-        }
-    </style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REPORTE DE RESPONSABLE</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/estilospdf.css">
+  </head>
 <body>
-
-	<h1>Reporte Responsable</h1>
-
-	<table>
-		<tr>
-			<th style="width: 70px">Codigo</th>
-			<th>Nombre</th>
-			<th>Apellido</th>
-			<th>Telefono</th>
-		</tr>
-    <?php foreach ($data as $r) { ?>
-		<tr>
-			<td><?= $r->CodResponsable; ?></td>
-			<td><?= $r->Nombre; ?></td>
-			<td><?= $r->Apellido; ?></td>
-			<td><?= $r->Telefono; ?></td>
-		</tr>
-    <?php  } ?>
-	</table>
-  <p><h4>Fecha: <?=  $date; ?></h4></p>
-
+  <header>
+      <p class="mt-5">--------LISTADO DE RESPONSABLE------</p>
+  </header>
+    <div class="container align-items-center">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center" style="width: 70px">Codigo</th>
+                <th scope="col" class="text-center">Nombre</th>
+                <th scope="col" class="text-center">Apellido</th>
+                <th scope="col" class="text-center">Telefono</th>
+              </tr>
+            </thead>
+            <tbody>
+				<?php foreach ($data as $r) { ?>
+					<tr>
+                        <td class="text-center"><?= $r->CodResponsable; ?></td>
+                        <td class="text-center"><?= $r->Nombre; ?></td>
+                        <td class="text-center"><?= $r->Apellido; ?></td>
+                        <td class="text-center"><?= $r->Telefono; ?></td>
+					</tr>
+				<?php  } ?>
+            </tbody>
+          </table>
+    </div>
+    <footer>
+        <p class="mt-3"> FECHA <?=  $date; ?></p>
+    </footer>
 </body>
 </html>
+
+
+

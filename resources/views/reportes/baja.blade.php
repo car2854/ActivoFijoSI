@@ -1,54 +1,48 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<meta charset='UTF-8'>
-
-	<title>Reporte Baja</title>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<style>
-        table{
-            font-family: Arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-        td, th{
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 5px 10px;
-        }
-        tr:nth-child(even){
-            background-color: #dddddd;
-        }
-    </style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REPORTE DE BAJA</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/estilospdf.css">
+  </head>
 <body>
-
-	<h1>Reporte Baja</h1>
-
-	<table>
-		<tr>
-			<th style="width: 100px">Codigo Bien</th>
-			<th>Nombre</th>
-			<th>Custodio</th>
-			<th>Operador</th>
-			<th>Fecha Hora</th>
-			<th>Descripcion</th>
-		</tr>
-    <?php foreach ($data as $r) { ?>
-		<tr>
-			<td><?= $r->CodBien; ?></td>
-			<td><?= $r->NombreBien; ?></td>
-			<td><?= $r->NombreCustodio; ?></td>
-			<td><?= $r->NombreOperador; ?></td>
-			<td><?= $r->FechaHora; ?></td>
-			<td><?= $r->Descripcion; ?></td>
-		</tr>
-    <?php  } ?>
-	</table>
-  <p><h4>Fecha <?=  $date; ?></h4></p>
-
+  <header>
+      <p class="mt-5">--------LISTADOS DE BAJAS------</p>
+  </header>
+    <div class="container align-items-center">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope='col' class="text-center">Codigo Bien</th>
+                <th scope='col' class="text-center">Nombre</th>
+                <th scope='col' class="text-center">Custodio</th>
+                <th scope='col' class="text-center">Operador</th>
+                <th scope='col' class="text-center">Fecha Hora</th>
+                <th scope='col' class="text-center">Descripcion</th>
+              </tr>
+            </thead>
+            <tbody>
+				<?php foreach ($data as $r) { ?>
+					<tr>
+                        <td class="text-center"><?= $r->CodBien; ?></td>
+                        <td class="text-center"><?= $r->NombreBien; ?></td>
+                        <td class="text-center"><?= $r->NombreCustodio; ?></td>
+                        <td class="text-center"><?= $r->NombreOperador; ?></td>
+                        <td class="text-center"><?= $r->FechaHora; ?></td>
+                        <td class="text-center"><?= $r->Descripcion; ?></td>
+					</tr>
+				<?php  } ?>
+            </tbody>
+          </table>
+    </div>
+    <footer>
+        <p class="mt-3"> FECHA <?=  $date; ?></p>
+    </footer>
 </body>
 </html>
+
+
+

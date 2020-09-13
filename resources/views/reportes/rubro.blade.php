@@ -1,49 +1,43 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<meta charset='UTF-8'>
-
-	<title>Reporte Rubro</title>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<style>
-        table{
-            font-family: Arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-        td, th{
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 5px 10px;
-        }
-        tr:nth-child(even){
-            background-color: #dddddd;
-        }
-    </style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REPORTE DE RUBRO</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/estilospdf.css">
+  </head>
 <body>
-
-	<h1>Reporte Rubro</h1>
-
-	<table>
-		<tr>
-			<th style="width: 70px">Id Rubro</th>
-			<th>Descripcion</th>
-			<th>Vida Util</th>
-			<th>Coeficiente</th>
-		</tr>
-    <?php foreach ($data as $r) { ?>
-		<tr>
-			<td><?= $r->CodRubro; ?></td>
-			<td><?= $r->Descripcion; ?></td>
-			<td><?= $r->vidautil; ?> años</td>
-			<td><?= $r->coeficiente; ?> %</td>
-		</tr>
-    <?php  } ?>
-	</table>
-  <p><h4>Fecha <?=  $date; ?></h4></p>
+  <header>
+      <p class="mt-5">--------LISTADO DE RUBRO------</p>
+  </header>
+    <div class="container align-items-center">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center" style="width: 70px">Id Rubro</th>
+                <th scope="col" class="text-center">Descripcion</th>
+                <th scope="col" class="text-center">Vida Util</th>
+                <th scope="col" class="text-center">Coeficiente</th>
+              </tr>
+            </thead>
+            <tbody>
+				<?php foreach ($data as $r) { ?>
+					<tr>
+                        <td class="text-center"><?= $r->CodRubro; ?></td>
+                        <td class="text-center"><?= $r->Descripcion; ?></td>
+                        <td class="text-center"><?= $r->vidautil; ?> años</td>
+                        <td class="text-center"><?= $r->coeficiente; ?> %</td>
+					</tr>
+				<?php  } ?>
+            </tbody>
+          </table>
+    </div>
+    <footer>
+        <p class="mt-3"> FECHA <?=  $date; ?></p>
+    </footer>
 </body>
 </html>
+
+

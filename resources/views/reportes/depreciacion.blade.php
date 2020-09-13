@@ -1,56 +1,47 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<meta charset='UTF-8'>
-
-	<title>Reporte Depreciacion</title>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<style>
-        table{
-            font-family: Arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-        td, th{
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 5px 10px;
-        }
-        tr:nth-child(even){
-            background-color: #dddddd;
-        }
-    </style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REPORTE DE DEPRECIACION</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/estilospdf.css">
+  </head>
 <body>
-
-	<h1>Reporte Depreciacion</h1>
-
-	<table>
-		<tr>
-			<th style="width: 120px">Codigo Bien</th>
-
-			<th>Valor Compra</th>
-			<th>Vida Util</th>
-			<th>Fecha Adquisicion</th>
-			<th>Depreciacion</th>
-			<th>Nombre Custodio</th>
-		</tr>
-    <?php foreach ($data as $r) { ?>
-		<tr>
-			<td>{{$r['CodBien']}}</td>
-
-			<td>{{$r['ValorCompra']}}</td>
-			<td>{{$r['vidautil']}}</td>
-			<td>{{$r['FechaAdquisicion']}}</td>
-			<td>{{$r['depreciacion']}}</td>
-			<td>{{$r['nombreCustodio']}}</td>
-		</tr>
-    <?php  } ?>
-	</table>
-  <p><h4>Fecha <?=  $date; ?></h4></p>
-
+  <header>
+      <p class="mt-5">--------LISTADO DE DEPRECIACION------</p>
+  </header>
+    <div class="container align-items-center">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center">Id Departamento</th>
+                <th scope="col" class="text-center">Descripcion</th>
+                <th scope="col" class="text-center">Edificio</th>
+                <th scope="col" class="text-center">Ciudad</th>
+                <th scope="col" class="text-center">Pais</th>
+              </tr>
+            </thead>
+            <tbody>
+				<?php foreach ($data as $r) { ?>
+					<tr>
+                        <td class="text-center"><?= $r->CodDepartamento; ?></td>
+                        <td class="text-center"><?= $r->Descripcion; ?></td>
+                        <td class="text-center"><?= $r->edificio; ?></td>
+                        <td class="text-center"><?= $r->ciudad; ?></td>
+                        <td class="text-center"><?= $r->pais; ?></td>
+					</tr>
+				<?php  } ?>
+            </tbody>
+          </table>
+    </div>
+    <footer>
+        <p class="mt-3"> FECHA <?=  $date; ?></p>
+    </footer>
 </body>
 </html>
+
+
+
+

@@ -1,52 +1,43 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<meta charset='UTF-8'>
-
-	<title>Reporte Bien</title>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<style>
-        table{
-            font-family: Arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-        td, th{
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 5px 10px;
-        }
-        tr:nth-child(even){
-            background-color: #dddddd;
-        }
-    </style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REPORTES DE BIENES</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/estilospdf.css">
+  </head>
 <body>
-
-	<h1>Reporte Bien</h1>
-
-	<table>
-		<tr>
-			<th style="width: 120px">Codigo</th>
-			<th>Nombre</th>
-			<th>Fecha Adquisicion</th>
-			<th>Valor Compra</th>
-			<th>Departamento</th>
-		</tr>
-    <?php foreach ($data as $r) { ?>
-		<tr>
-			<td><?= $r->CodBien; ?></td>
-			<td><?= $r->Nombre; ?></td>
-			<td><?= $r->FechaAdquisicion; ?></td>
-			<td><?= $r->ValorCompra; ?></td>
-			<td><?= $r->Descripcion; ?></td>
-		</tr>
-    <?php  } ?>
-	</table>
-  <p><h4>Fecha: <?=  $date; ?></h4></p>
-
+  <header>
+      <p class="mt-5">--------LISTADOS DE BIENES------</p>
+  </header>
+    <div class="container align-items-center">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center">Codigo</th>
+                <th scope="col" class="text-center">Nombre</th>
+                <th scope="col" class="text-center">Fecha Adquisicion</th>
+                <th scope="col" class="text-center">Valor Compra</th>
+                <th scope="col" class="text-center">Departamento</th>
+              </tr>
+            </thead>
+            <tbody>
+				<?php foreach ($data as $r) { ?>
+					<tr>
+                        <td class="text-center"><?= $r->CodBien; ?></td>
+                        <td class="text-center"><?= $r->Nombre; ?></td>
+                        <td class="text-center"><?= $r->FechaAdquisicion; ?></td>
+                        <td class="text-center"><?= $r->ValorCompra; ?></td>
+                        <td class="text-center"><?= $r->Descripcion; ?></td>
+					</tr>
+				<?php  } ?>
+            </tbody>
+          </table>
+    </div>
+    <footer>
+        <p class="mt-3"> FECHA <?=  $date; ?></p>
+    </footer>
 </body>
 </html>

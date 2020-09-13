@@ -4,45 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Reporte Usuario</title>
-    <style>
-        table{
-            font-family: Arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-        td, th{
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 5px 10px;
-        }
-        tr:nth-child(even){
-            background-color: #dddddd;
-        }
-    </style>
-</head>
+    <title>REPORTE DE USUARIO</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/estilospdf.css">
+  </head>
 <body>
-    <h1>Reporte Usuario</h1>
-
-    <table>
-
-        <tr>
-			<th>Nombre</th>
-			<th>Gmail</th>
-			<th>Rol</th>
-			<th>Fecha de creacion</th>
-		</tr>
-        <?php foreach ($data as $r) { ?>
-            <tr>
-                <td><?= $r->name; ?></td>
-                <td><?= $r->email; ?></td>
-                <td><?= $r->rol; ?></td>
-                <td><?= $r->created_at; ?></td>
-            </tr>
-        <?php  } ?>
-
-    </table>
-    <p><h4>Fecha <?=  $date; ?></h4></p>
+  <header>
+      <p class="mt-5">--------LISTADO DE USUARIO------</p>
+  </header>
+    <div class="container align-items-center">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center">Nombre</th>
+                <th scope="col" class="text-center">Gmail</th>
+                <th scope="col" class="text-center">Rol</th>
+                <th scope="col" class="text-center">Fecha de creacion</th>
+              </tr>
+            </thead>
+            <tbody>
+				<?php foreach ($data as $r) { ?>
+					<tr>
+                        <td class="text-center"><?= $r->name; ?></td>
+                        <td class="text-center"><?= $r->email; ?></td>
+                        <td class="text-center"><?= $r->rol; ?></td>
+                        <td class="text-center"><?= $r->created_at; ?></td>
+					</tr>
+				<?php  } ?>
+            </tbody>
+          </table>
+    </div>
+    <footer>
+        <p class="mt-3"> FECHA <?=  $date; ?></p>
+    </footer>
 </body>
 </html>
 
