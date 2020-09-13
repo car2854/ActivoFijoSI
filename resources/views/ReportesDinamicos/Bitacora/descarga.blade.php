@@ -26,11 +26,11 @@
             <tbody>
 				<?php foreach ($data as $r) { ?>
 					<tr>
-                        <td class="text-center">{{$lis->name}}</td>
-                        <td class="text-center">{{$lis->email}}</td>
-                        <td class="text-center">{{$lis->accion}}</td>
-                        <td class="text-center">{{$lis->fechaAccion}}</td>
-                        <td class="text-center">{{$lis->rol}}</td>
+                        <td class="text-center">{{$r->name}}</td>
+                        <td class="text-center">{{$r->email}}</td>
+                        <td class="text-center">{{$r->accion}}</td>
+                        <td class="text-center">{{$r->fechaAccion}}</td>
+                        <td class="text-center">{{$r->rol}}</td>
 					</tr>
 				<?php  } ?>
             </tbody>
