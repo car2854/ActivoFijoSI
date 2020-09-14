@@ -57,6 +57,7 @@ class CategoriaController extends Controller
         $categoria = new Categoria;
         $categoria->Nombre = $mayuscula;
         $categoria->CodRubro = $request->get('codrubro');
+        $categoria->Descripcion = $request->get('descripcion');
         $categoria->save();
 
         $sql = "SELECT max(id) as id
