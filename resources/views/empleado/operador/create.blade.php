@@ -1,47 +1,77 @@
 @extends ('layouts.principal')
 @section ('contenido')
-	<div class="row">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<h3>Nuevo Operador</h3>
-			@if (count($errors)>0)
-			<div class="alert alert-danger">
-				<ul>
-				@foreach ($errors->all() as $error)
-					<li>{{$error}}</li>
-				@endforeach
-				</ul>
-			</div>
-			@endif
 
-			{!!Form::open(array('url'=>'empleado/operador','method'=>'POST','autocomplete'=>'off'))!!}
-            {{Form::token()}}
 
-            <div class="form-group">
-            	<label for="nombre">Nombre</label>
-            	<input type="text" name="nombre" class="form-control" placeholder="Nombre...">
+<div class="content-wrap">
+    <div class="main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 p-r-0 title-margin-right">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h1>Nuevo Operador</h1>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <!-- /# row -->
+            <section id="main-content">
 
-            <div class="form-group">
-            	<label for="apellido">Apellido</label>
-            	<input type="text" name="apellido" class="form-control" placeholder="Apellido...">
-            </div>
-            <div class="form-group">
-            	<label for="telefono">Telefono</label>
-            	<input type="number" name="telefono" class="form-control" placeholder="Telefono...">
-            </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="basic-form">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    @if (count($errors)>0)
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{$error}}</li>
+                                        @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
 
-            <div class="form-group">
-                  <label for="gmail">Email</label>
-                  <input type="email" name="gmail" class="form-control" placeholder="Email...">
-            </div>
+                                    {!!Form::open(array('url'=>'empleado/operador','method'=>'POST','autocomplete'=>'off'))!!}
+                                    {{Form::token()}}
 
-            <div class="form-group">
-            	<button class="btn btn-primary" type="submit">Guardar</button>
-            	<button class="btn btn-danger" type="reset">Cancelar</button>
-            </div>
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre</label>
+                                        <input type="text" name="nombre" class="form-control" placeholder="Nombre...">
+                                    </div>
 
-			{!!Form::close()!!}		
-            
-		</div>
-	</div>
+                                    <div class="form-group">
+                                        <label for="apellido">Apellido</label>
+                                        <input type="text" name="apellido" class="form-control" placeholder="Apellido...">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="telefono">Telefono</label>
+                                        <input type="number" name="telefono" class="form-control" placeholder="Telefono...">
+                                    </div>
+
+                                    <div class="form-group">
+                                          <label for="gmail">Email</label>
+                                          <input type="email" name="gmail" class="form-control" placeholder="Email...">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" type="submit">Guardar</button>
+                                        <button class="btn btn-danger" type="reset">Cancelar</button>
+                                    </div>
+
+                                    {!!Form::close()!!}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>
+
+
 @endsection
