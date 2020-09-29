@@ -48,6 +48,12 @@ class CustodioController extends Controller
     }
 
     public function store(CustodioFormRequest $request){
+
+        $request->validated([
+            'codigo' => 'required'
+        ]);
+
+
     	$custodio = new Custodio;
         $custodio->CodCustodio = $request->get('codigo');
     	$custodio->Nombre = $request->get('nombre');
