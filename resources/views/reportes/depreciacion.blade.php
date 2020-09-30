@@ -45,7 +45,7 @@
 
                 <?php foreach ($data as $r) { ?>
 					<tr>
-                        <?= $r; ?>
+                        <td class="text-center"><?= $r; ?></td>
 					</tr>
 				<?php  } ?>
             </tbody>
