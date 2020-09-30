@@ -37,7 +37,7 @@
                 @endforeach
             </table>
         </div> <!-- /.table-stats -->
-        {{$operador->render()}}
+        {{$revaluo->render()}}
     </div>
   </div>
 
