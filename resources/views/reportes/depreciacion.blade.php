@@ -20,6 +20,7 @@
                 <th scope="col" class="text-center">Valor Compra</th>
                 <th scope="col" class="text-center">Vida Util</th>
                 <th scope="col" class="text-center">Fecha Adquisicion</th>
+                <th scope="col" class="text-center">Depreciacion</th>
                 <th scope="col" class="text-center">Nombre Custodio</th>
               </tr>
             </thead>
