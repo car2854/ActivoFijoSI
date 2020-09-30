@@ -16,21 +16,21 @@
         <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col" class="text-center">Id Departamento</th>
-                <th scope="col" class="text-center">Descripcion</th>
-                <th scope="col" class="text-center">Edificio</th>
-                <th scope="col" class="text-center">Ciudad</th>
-                <th scope="col" class="text-center">Pais</th>
+                <th scope="col" class="text-center">Codigo Bien</th>
+                <th scope="col" class="text-center">Nombre</th>
+                <th scope="col" class="text-center">Departamento</th>
+                <th scope="col" class="text-center">Depreciacion</th>
+                <th scope="col" class="text-center">Valor Compra</th>
               </tr>
             </thead>
             <tbody>
 				<?php foreach ($data as $r) { ?>
 					<tr>
-                        <td class="text-center"><?= $r->CodDepartamento; ?></td>
+                        <td class="text-center"><?= $r->CodBien; ?></td>
+                        <td class="text-center"><?= $r->Nombre; ?></td>
                         <td class="text-center"><?= $r->Descripcion; ?></td>
-                        <td class="text-center"><?= $r->edificio; ?></td>
-                        <td class="text-center"><?= $r->ciudad; ?></td>
-                        <td class="text-center"><?= $r->pais; ?></td>
+                        <td class="text-center"><?= $r->depreciacion; ?></td>
+                        <td class="text-center"><?= $r->ValorCompra; ?></td>
 					</tr>
 				<?php  } ?>
             </tbody>
