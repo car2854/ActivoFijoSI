@@ -27,7 +27,7 @@ class RevaluoController extends Controller
             ->join('bien','bien.CodBien','=','revisiontecnica.CodBien')
             ->join('operador','operador.CodOperador','=','revisiontecnica.CodOperador')
             ->join('revaluo','revaluo.NroRevision','=','revisiontecnica.NroRevision')
-            ->join('custodio','custodio.CodCustodio','=','custodio.CodCustodio')
+            ->join('custodio','custodio.CodCustodio','=','revisiontecnica.CodCustodio')
             ->select('bien.CodBien','bien.Nombre as NombreBien','custodio.Nombre as NombreCustodio','Operador.Nombre as NombreOperador','revaluo.Estado','revaluo.FechaHora','revaluo.Monto','revaluo.Descripcion')
             ->orderBy('revisiontecnica.CodBien','desc')
             ->get();
@@ -112,9 +112,7 @@ class RevaluoController extends Controller
         //consulta
         $Revaluo=DB::table('revisiontecnica')
         ->join('bien','bien.CodBien','=','revisiontecnica.CodBien')
-        ->join('operador','operador.CodOperador','=','revisiontecnica.CodOperador')
         ->join('revaluo','revaluo.NroRevision','=','revisiontecnica.NroRevision')
-        ->join('custodio','custodio.CodCustodio','=','custodio.CodCustodio')
         ->select('bien.CodBien','bien.Nombre as NombreBien','custodio.Nombre as NombreCustodio','Operador.Nombre as NombreOperador','revaluo.Estado','revaluo.FechaHora','revaluo.Monto','revaluo.Descripcion')
         ->orderBy('revisiontecnica.CodBien','desc')
         ->get();
