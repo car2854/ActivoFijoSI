@@ -24,30 +24,18 @@
               </tr>
             </thead>
             <tbody>
-                {{--  @foreach($bienes as $bien)
-
-                    <tr>
-                        <th class="text-center">{{$bien['CodBien']}}</th>
-                        <th class="text-center">{{$bien['Nombre']}}</th>
-                        <th class="text-center">{{$bien['Descripcion']}} </th>
-                        <th class="text-center">{{$bien['depreciacion']}} %</th>
-                        <th class="text-center">{{$bien['ValorCompra']}}</th>
-                    </tr>
-
-
-                    <td class="text-center"><?= $r->NroAdquisicion; ?></td>
-						<td class="text-center"><?= $r->Fecha; ?></td>
-						<td class="text-center"><?= $r->Nombre; ?></td>
-						<td class="text-center"><?= $r->NroAlmacen; ?></td>
-
-
-                @endforeach  --}}
 
                 <?php foreach ($data as $r) { ?>
-					<tr>
-                        <td class="text-center"><?= $r; ?></td>
-					</tr>
-				<?php  } ?>
+                    <tr>
+                        <td class="text-center">{{$r['CodBien']}}</td>
+                        <td class="text-center">{{$r['ValorCompra']}}</td>
+                        <td class="text-center">{{$r['vidautil']}}</td>
+                        <td class="text-center">{{$r['FechaAdquisicion']}}</td>
+                        <td class="text-center">{{$r['depreciacion']}}</td>
+                        <td class="text-center">{{$r['nombreCustodio']}}</td>
+                    </tr>
+                <?php  } ?>
+
             </tbody>
           </table>
     </div>
