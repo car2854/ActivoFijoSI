@@ -25,13 +25,14 @@
             </thead>
             <tbody>
                 @foreach($bienes as $bien)
-                    <tr>
+{{ $bien }}
+                    {{--  <tr>
                         <th class="text-center">{{$bien['CodBien']}}</th>
                         <th class="text-center">{{$bien['Nombre']}}</th>
                         <th class="text-center">{{$bien['Descripcion']}} </th>
                         <th class="text-center">{{$bien['depreciacion']}} %</th>
                         <th class="text-center">{{$bien['ValorCompra']}}</th>
-                    </tr>
+                    </tr>  --}}
                 @endforeach
 
             </tbody>
