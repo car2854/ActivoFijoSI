@@ -21,7 +21,6 @@
                 <th scope="col" class="text-center">Vida Util</th>
                 <th scope="col" class="text-center">Fecha Adquisicion</th>
                 <th scope="col" class="text-center">Depreciacion</th>
-                <th scope="col" class="text-center">Nombre Custodio</th>
               </tr>
             </thead>
             <tbody>
@@ -33,7 +32,6 @@
                         <td class="text-center">{{$r['vidautil']}}</td>
                         <td class="text-center">{{$r['FechaAdquisicion']}}</td>
                         <td class="text-center">{{$r['depreciacion']}}</td>
-                        <td class="text-center">{{$r['nombreCustodio']}}</td>
                     </tr>
                 <?php  } ?>
 
