@@ -103,4 +103,29 @@ class RevaluoController extends Controller
 
         return Redirect::to('RevisionTecnica/Operador');
     }
+
+
+    public function crearPDF(){
+
+        $vistaUrl = "reportes.revaluo";
+
+        //consulta
+        $Revaluo=DB::table('revisiontecnica')
+        ->join('bien','bien.CodBien','=','revisiontecnica.CodBien')
+        ->join('operador','operador.CodOperador','=','revisiontecnica.CodOperador')
+        ->join('revaluo','revaluo.NroRevision','=','revisiontecnica.NroRevision')
+        ->join('custodio','custodio.CodCustodio','=','custodio.CodCustodio')
+        ->select('bien.CodBien','bien.Nombre as NombreBien','custodio.Nombre as NombreCustodio','Operador.Nombre as NombreOperador','revaluo.Estado','revaluo.FechaHora','revaluo.Monto','revaluo.Descripcion')
+        ->orderBy('revisiontecnica.CodBien','desc')
+        ->get();
+        //fin consulta
+
+        $data = $Revaluo;
+        $date = date('Y-m-d');
+        $view = \View::make($vistaUrl, compact('data','date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        return $pdf->stream('reporte-baja.pdf');
+    }
 }
