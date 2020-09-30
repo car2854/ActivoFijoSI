@@ -84,7 +84,7 @@ class DepreciacionController extends Controller
 
       $vistaUrl = "reportes.depreciacion";
       $bienes = DB::table('bien as b')
-            ->where('b.EstadoBien'.'=','activo')
+            ->where('b.EstadoBien'.'=','hola')
             ->join('rubro as r','b.CodRubro','=','r.CodRubro')
             ->join('departamento as d','d.CodDepartamento','=','b.UbicacionDepartamento')
             ->join('categoria as cat','b.CodCategoria','=','cat.CodCategoria')
