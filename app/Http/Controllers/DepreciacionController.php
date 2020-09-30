@@ -27,8 +27,6 @@ class DepreciacionController extends Controller
             ->select('b.CodBien','b.Nombre','cat.Nombre as NombreCategoria','b.ValorCompra','r.vidautil','b.FechaAdquisicion','d.Descripcion','c.Nombre as nombreCustodio')
             ->get();
 
-            dd($bienes);
-
             $date2 = new DateTime("now");
             $cont = 0;
             $arrays = array();
