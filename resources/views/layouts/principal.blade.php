@@ -88,6 +88,10 @@
                                   <li><a href="{{URL::action('BajaController@index')}}"><i class="fa fa-wrench"></i> Baja</a></li>
                               @endcan
 
+                              @can('read revaluo')
+                                  <li><a href="{{URL::action('RevaluoController@index')}}"><i class="fa fa-wrench"></i> Revaluo</a></li>
+                              @endcan
+
                               @can('read revision')
                                   <li><a href="{{URL::action('RevisionController@index')}}"><i class="fa fa-folder"></i> Revision Tecnica</a></li>
                               @endcan
