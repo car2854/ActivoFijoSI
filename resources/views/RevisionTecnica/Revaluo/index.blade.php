@@ -50,8 +50,8 @@
                             </tbody>
                         </table>
                     </div>
-                    {{$revaluo->render()}}
                 </div>
+                {{$revaluo->render()}}
             </div>
             <div>
             <a href="/RevisionTecnica/reporteBaja"> <button class="btn btn-primary">descargar PDF</button> </a>
