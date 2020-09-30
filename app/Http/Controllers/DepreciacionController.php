@@ -20,11 +20,9 @@ class DepreciacionController extends Controller
             $bienes = DB::table('bien as b')
             ->join('rubro as r','b.CodRubro','=','r.CodRubro')
             ->join('departamento as d','d.CodDepartamento','=','b.UbicacionDepartamento')
-            ->join('custodio as c','c.CodDepartamento','=','d.CodDepartamento')
             ->join('categoria as cat','b.CodCategoria','=','cat.CodCategoria')
-            ->join('custodio','custodio.CodDepartamento','=','d.CodDepartamento')
             ->orderby('b.ValorCompra','desc')
-            ->select('b.CodBien','b.Nombre','cat.Nombre as NombreCategoria','b.ValorCompra','r.vidautil','b.FechaAdquisicion','d.Descripcion','c.Nombre as nombreCustodio')
+            ->select('b.CodBien','b.Nombre','cat.Nombre as NombreCategoria','b.ValorCompra','r.vidautil','b.FechaAdquisicion','d.Descripcion')
             ->get();
 
             $date2 = new DateTime("now");
@@ -44,7 +42,6 @@ class DepreciacionController extends Controller
                     'vidautil'=> $bienes[$cont]->vidautil,
                     'Descripcion'=> $bienes[$cont]->Descripcion,
                     'FechaAdquisicion'=> $bienes[$cont]->FechaAdquisicion,
-                    'nombreCustodio' => $bienes[$cont]->nombreCustodio,
                     'depreciacion' => bcdiv($deprecia, '1', 2)
                 );
                 $cont=$cont+1;
@@ -89,10 +86,9 @@ class DepreciacionController extends Controller
       $bienes = DB::table('bien as b')
             ->join('rubro as r','b.CodRubro','=','r.CodRubro')
             ->join('departamento as d','d.CodDepartamento','=','b.UbicacionDepartamento')
-            ->join('custodio as c','c.CodDepartamento','=','d.CodDepartamento')
-            ->join('custodio','custodio.CodDepartamento','=','d.CodDepartamento')
+            ->join('categoria as cat','b.CodCategoria','=','cat.CodCategoria')
             ->orderby('b.ValorCompra','desc')
-            ->select('b.CodBien','b.ValorCompra','r.vidautil','b.FechaAdquisicion','d.Descripcion','c.Nombre as nombreCustodio')
+            ->select('b.CodBien','b.Nombre','cat.Nombre as NombreCategoria','b.ValorCompra','r.vidautil','b.FechaAdquisicion','d.Descripcion')
             ->get();
 
             $date2 = new DateTime("now");
@@ -109,7 +105,6 @@ class DepreciacionController extends Controller
                     'vidautil'=> $bienes[$cont]->vidautil,
                     'Descripcion'=> $bienes[$cont]->Descripcion,
                     'FechaAdquisicion'=> $bienes[$cont]->FechaAdquisicion,
-                    'nombreCustodio' => $bienes[$cont]->nombreCustodio,
                     'depreciacion' => bcdiv($deprecia, '1', 2)
                 );
                 $cont=$cont+1;
