@@ -26,11 +26,11 @@
             <tbody>
 				<?php foreach ($data as $r) { ?>
 					<tr>
-                        <td class="text-center"><?= $r->CodBien; ?></td>
-                        <td class="text-center"><?= $r->Nombre; ?></td>
-                        <td class="text-center"><?= $r->Descripcion; ?></td>
-                        <td class="text-center"><?= $r->depreciacion; ?></td>
-                        <td class="text-center"><?= $r->ValorCompra; ?></td>
+                        <td class="text-center">{{ $r['CodBien'] }}</td>
+                        <td class="text-center">{{ $r['Nombre'] }}</td>
+                        <td class="text-center">{{ $r['Descripcion'] }}</td>
+                        <td class="text-center">{{ $r['depreciacion'] }}</td>
+                        <td class="text-center">{{ $r['ValorCompra'] }}</td>
 					</tr>
 				<?php  } ?>
             </tbody>
