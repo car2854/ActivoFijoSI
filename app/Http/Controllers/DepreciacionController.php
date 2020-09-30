@@ -22,6 +22,7 @@ class DepreciacionController extends Controller
             ->join('departamento as d','d.CodDepartamento','=','b.UbicacionDepartamento')
             ->join('custodio as c','c.CodDepartamento','=','d.CodDepartamento')
             ->join('categoria as cat','b.CodCategoria','=','cat.CodCategoria')
+            ->join('custodio','custodio.CodDepartamento','=','d.CodDepartamento')
             ->orderby('b.ValorCompra','desc')
             ->select('b.CodBien','b.Nombre','cat.Nombre as NombreCategoria','b.ValorCompra','r.vidautil','b.FechaAdquisicion','d.Descripcion','c.Nombre as nombreCustodio')
             ->get();
@@ -91,6 +92,7 @@ class DepreciacionController extends Controller
             ->join('rubro as r','b.CodRubro','=','r.CodRubro')
             ->join('departamento as d','d.CodDepartamento','=','b.UbicacionDepartamento')
             ->join('custodio as c','c.CodDepartamento','=','d.CodDepartamento')
+            ->join('custodio','custodio.CodDepartamento','=','d.CodDepartamento')
             ->orderby('b.ValorCompra','desc')
             ->select('b.CodBien','b.ValorCompra','r.vidautil','b.FechaAdquisicion','d.Descripcion','c.Nombre as nombreCustodio')
             ->get();
