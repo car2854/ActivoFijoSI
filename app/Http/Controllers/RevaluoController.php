@@ -30,7 +30,7 @@ class RevaluoController extends Controller
             ->join('custodio','custodio.CodCustodio','=','custodio.CodCustodio')
             ->select('bien.CodBien','bien.Nombre as NombreBien','custodio.Nombre as NombreCustodio','Operador.Nombre as NombreOperador','revaluo.Estado','revaluo.FechaHora','revaluo.Monto','revaluo.Descripcion')
             ->orderBy('revisiontecnica.CodBien','desc')
-            ->paginate(7);
+            ->get();
 
             return view('RevisionTecnica.Revaluo.index',["revaluo"=>$Revaluo,"searchText"=>$query]);
         }
