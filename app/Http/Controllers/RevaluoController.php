@@ -23,7 +23,7 @@ class RevaluoController extends Controller
         if ($request){
             $query=trim($request->get('searchText'));
 
-            $Revaluo=DB::table('revisiontecnica')->where('revisiontecnica.CodBien','LIKE','%'.$query.'%')
+            $Revaluo=DB::table('revisiontecnica')
             ->join('bien','bien.CodBien','=','revisiontecnica.CodBien')
             ->join('operador','operador.CodOperador','=','revisiontecnica.CodOperador')
             ->join('revaluo','revaluo.NroRevision','=','revisiontecnica.NroRevision')
