@@ -49,8 +49,8 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{$revaluo->render()}}
                     </div>
+                    {{$revaluo->render()}}
                 </div>
             </div>
             <div>
