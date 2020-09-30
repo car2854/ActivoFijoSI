@@ -112,9 +112,9 @@ class DepreciacionController extends Controller
                 );
                 $cont=$cont+1;
             }
-      $bienes = $arrays;
+      $data = $arrays;
       $date = date('Y-m-d');
-      $view = \View::make($vistaUrl, compact('bienes','date'))->render();
+      $view = \View::make($vistaUrl, compact('data','date'))->render();
       $pdf = \App::make('dompdf.wrapper');
       $pdf->loadHTML($view);
 
