@@ -112,6 +112,7 @@ class DepreciacionController extends Controller
                 );
                 $cont=$cont+1;
             }
+            dd($arrays);
       $data = $arrays;
       $date = date('Y-m-d');
       $view = \View::make($vistaUrl, compact('data','date'))->render();
