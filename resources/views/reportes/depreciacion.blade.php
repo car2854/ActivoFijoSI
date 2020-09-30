@@ -24,15 +24,16 @@
               </tr>
             </thead>
             <tbody>
-				<?php foreach ($data as $r) { ?>
-					<tr>
-                        <td class="text-center">{{ $r['CodBien'] }}</td>
-                        <td class="text-center">{{ $r['Nombre'] }}</td>
-                        <td class="text-center">{{ $r['Descripcion'] }}</td>
-                        <td class="text-center">{{ $r['depreciacion'] }}</td>
-                        <td class="text-center">{{ $r['ValorCompra'] }}</td>
-					</tr>
-				<?php  } ?>
+                @foreach($bienes as $bien)
+                    <tr>
+                        <th class="text-center">{{$bien['CodBien']}}</th>
+                        <th class="text-center">{{$bien['Nombre']}}</th>
+                        <th class="text-center">{{$bien['Descripcion']}} </th>
+                        <th class="text-center">{{$bien['depreciacion']}} %</th>
+                        <th class="text-center">{{$bien['ValorCompra']}}</th>
+                    </tr>
+                @endforeach
+
             </tbody>
           </table>
     </div>
