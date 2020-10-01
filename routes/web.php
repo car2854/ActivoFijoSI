@@ -110,4 +110,3 @@ Route::get('usuario/PerfilUsuario/{id}','UltimaActividadesController@GetPerfil')
 Route::get('main/notification','NotificationController@index');
 
 
-Route::get('Login2','UsuarioMovilController@login');

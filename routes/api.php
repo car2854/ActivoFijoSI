@@ -38,7 +38,7 @@ Route::resource('RevaluoMovil','RevaluoMovilController');
 Route::resource('DepartamentoGetMovil','DepartamentoGetMovilController');
 
 Route::resource('UsuarioMovil','UsuarioMovilController');
-Route::get('Login','UsuarioMovilController@login');
+Route::post('Login','UsuarioMovilController@login');
 
 Route::resource('AlmacenMovil','AlmacenMovilController');
 Route::resource('CategoriaMovil','CategoriaMovilController');
