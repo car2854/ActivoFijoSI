@@ -19,26 +19,28 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('almacen/rubro', 'RubroController');
 
-
-Route::resource('UbicacionMovil','UbicacionMovilController');
-Route::resource('DepartamentoMovil','DepartamentoMovilController');
-Route::resource('RubroMovil','RubroMovilController');
-Route::resource('BienMovil','BienMovilController');
-Route::resource('DetalleBienMovil','DetalleBienMovilController');
-
-Route::resource('BajaBienMovil','BajaBienMovilController');
-
-Route::resource('MantenimientoMovil','MantenimientoMovilController');
-
-Route::resource('ResponsableMovil','ResponsableMovilController');
-Route::resource('CustodioMovil','CustodioMovilController');
-Route::resource('OperadorMovil','OperadorMovilController');
-Route::resource('ProveedorMovil','ProveedorMovilController');
-Route::resource('RevaluoMovil','RevaluoMovilController');
-Route::resource('DepartamentoGetMovil','DepartamentoGetMovilController');
-
+//--------------- MI PARTE WE ---------------------
+// Gestionar usuario
 Route::resource('UsuarioMovil','UsuarioMovilController');
 Route::post('Login','UsuarioMovilController@login');
+Route::get('prueba', 'UsuarioMovilController@prueba');
+Route::get('logout', 'UsuarioMovilController@logout');
+// Depreciacion
 
-Route::resource('AlmacenMovil','AlmacenMovilController');
-Route::resource('CategoriaMovil','CategoriaMovilController');
+//--------------------------------------------------
+
+// Route::resource('UbicacionMovil','UbicacionMovilController');
+// Route::resource('DepartamentoMovil','DepartamentoMovilController');
+// Route::resource('RubroMovil','RubroMovilController');
+// Route::resource('BienMovil','BienMovilController');
+// Route::resource('DetalleBienMovil','DetalleBienMovilController');
+// Route::resource('BajaBienMovil','BajaBienMovilController');
+// Route::resource('MantenimientoMovil','MantenimientoMovilController');
+// Route::resource('ResponsableMovil','ResponsableMovilController');
+// Route::resource('CustodioMovil','CustodioMovilController');
+// Route::resource('OperadorMovil','OperadorMovilController');
+// Route::resource('ProveedorMovil','ProveedorMovilController');
+// Route::resource('RevaluoMovil','RevaluoMovilController');
+// Route::resource('DepartamentoGetMovil','DepartamentoGetMovilController');
+// Route::resource('AlmacenMovil','AlmacenMovilController');
+// Route::resource('CategoriaMovil','CategoriaMovilController');
