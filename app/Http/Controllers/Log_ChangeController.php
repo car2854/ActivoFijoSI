@@ -16,7 +16,7 @@ class Log_ChangeController extends Controller
 {
 
     public function __construct(){
-      $this->Middleware('auth');
+      //$this->Middleware('auth');
     }
 
     public function index(Request $request){
