@@ -27,7 +27,10 @@ Route::get('prueba', 'UsuarioMovilController@prueba');
 Route::get('logout', 'UsuarioMovilController@logout');
 // Depreciacion
 
-//--------------------------------------------------
+//----------------CARLOS ALBERTO----------------------
+
+Route::get('Bitacora','Log_ChangeController@ApiGetBitacora');
+
 
 // Route::resource('UbicacionMovil','UbicacionMovilController');
 // Route::resource('DepartamentoMovil','DepartamentoMovilController');
