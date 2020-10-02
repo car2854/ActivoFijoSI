@@ -47,6 +47,13 @@ class Log_ChangeController extends Controller
 
       return $pdf->stream('reporte-bitacora');
     }
+    
+    public function ApiGetBitacora(){
+        
+        $bitacora = Log_Change::get();
+        return response()->json($bitacora);
+        
+    }
   
 
 }
