@@ -26,23 +26,10 @@ class UsuarioMovilController extends Controller
             return json_encode("Error");
         }else {
             if(Hash::check($request->password, $resultado->password)){
-                Auth::attempt(['email' => $email, 'password' => $password]);
-                return json_encode("Success");
+                return response()->json($resultado, 200);
             }
-            return json_encode("Error");
+            return json_encode(0);
         }
-    }
-
-
-    public function prueba(){
-
-        $usuario = Auth::user()->id;
-
-        return json_encode($usuario);
-    }
-
-    public function logout(){
-        Auth::logout();
     }
 
 
