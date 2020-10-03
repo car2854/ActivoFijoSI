@@ -125,4 +125,13 @@ class ResponsableController extends Controller
 
       return $pdf->stream('reporte-responsable.pdf');
     }
+    
+    public function ApiGetResponsable(){
+
+        $responsable=DB::table('responsable')
+        ->where('Estado','=','1')->get();
+
+        return response()->json($responsable);
+
+    }
 }
