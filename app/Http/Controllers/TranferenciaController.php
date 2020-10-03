@@ -163,8 +163,6 @@ class TranferenciaController extends Controller
         ->join('responsable as r','t.CodResponsable','=','r.CodResponsable')
         ->join('bien as b','t.CodBien','=','b.CodBien')
         ->select('t.NroTranferencia','t.FechaTranferencia','c.Nombre as nombrec1','r.Nombre as nombrer')
-        ->where('t.NroTranferencia','LIKE','%'.$query.'%')
-        //->orwhere('r.Descripcion','LIKE','%'.$query.'%')
         ->orderBy('t.NroTranferencia','asc')->get();
 
         return response()->json($tranferencia);
