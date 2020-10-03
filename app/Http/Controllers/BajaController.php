@@ -130,4 +130,18 @@ class BajaController extends Controller{
 
       return $pdf->stream('reporte-baja.pdf');
     }
+    
+    public function ApiGetBaja(){
+    
+        $baja=DB::table('revisiontecnica')
+        ->join('bien','bien.CodBien','=','revisiontecnica.CodBien')
+        ->join('operador','operador.CodOperador','=','revisiontecnica.CodOperador')
+        ->join('baja','baja.NroRevision','=','revisiontecnica.NroRevision')
+        ->join('custodio','custodio.CodCustodio','=','revisiontecnica.CodCustodio')
+        ->select('bien.CodBien','bien.Nombre as NombreBien','custodio.Nombre as NombreCustodio','operador.Nombre as NombreOperador','baja.Descripcion','baja.FechaHora')
+        ->orderBy('revisiontecnica.CodBien','desc')->get();
+        
+        return response()->json($baja);
+        
+    }
 }
