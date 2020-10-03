@@ -153,4 +153,21 @@ class TranferenciaController extends Controller
 
       return $pdf->stream('reporte-tranferencia.pdf');
     }
+    
+    
+    public function ApiGetBaja(){
+
+        $tranferencia=DB::table('tranferencia as t')
+        ->join('custodio as c','t.CodCustodioDestino','=','c.CodCustodio')
+        //->join('custodio as c1','t.CodCustodioDestino','=','c.CodCustodio')
+        ->join('responsable as r','t.CodResponsable','=','r.CodResponsable')
+        ->join('bien as b','t.CodBien','=','b.CodBien')
+        ->select('t.NroTranferencia','t.FechaTranferencia','c.Nombre as nombrec1','r.Nombre as nombrer')
+        ->where('t.NroTranferencia','LIKE','%'.$query.'%')
+        //->orwhere('r.Descripcion','LIKE','%'.$query.'%')
+        ->orderBy('t.NroTranferencia','asc')->get();
+
+        return response()->json($tranferencia);
+
+    }
 }
