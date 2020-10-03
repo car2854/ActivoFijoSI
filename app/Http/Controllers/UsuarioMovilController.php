@@ -129,4 +129,6 @@ class UsuarioMovilController extends Controller
 
         return json_encode('Eliminado');
     }
+
+    //futa madre
 }

@@ -132,4 +132,18 @@ class MantenimientoController extends Controller
 
       return $pdf->stream('reporte-mantenimiento.pdf');
     }
+    
+    public function ApiGetMantenimiento(){
+    
+        $Mantenimiento=DB::table('revisiontecnica')
+        ->join('bien','bien.CodBien','=','revisiontecnica.CodBien')
+        ->join('operador','operador.CodOperador','=','revisiontecnica.CodOperador')
+        ->join('mantenimiento','mantenimiento.NroRevision','=','revisiontecnica.NroRevision')
+        ->join('custodio','custodio.CodCustodio','=','revisiontecnica.CodCustodio')
+        ->select('bien.CodBien','bien.Nombre as NombreBien','custodio.Nombre as NombreCustodio','operador.Nombre as NombreOperador','mantenimiento.FechaInicio','mantenimiento.FechaFinalizo','mantenimiento.Problema','mantenimiento.Solucion','mantenimiento.Costo')
+        ->orderBy('revisiontecnica.CodBien','desc')->get();
+        
+        return response()->json($Mantenimiento);
+        
+    }
 }

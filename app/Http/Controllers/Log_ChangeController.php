@@ -16,7 +16,7 @@ class Log_ChangeController extends Controller
 {
 
     public function __construct(){
-      $this->Middleware('auth');
+      //$this->Middleware('auth');
     }
 
     public function index(Request $request){
@@ -46,6 +46,15 @@ class Log_ChangeController extends Controller
       $pdf->loadHTML($view);
 
       return $pdf->stream('reporte-bitacora');
+    }
+    
+    public function ApiGetBitacora(){
+        
+        $bitacora=DB::table('log_change as log')
+          ->join('users as usu','log.id_user','=','usu.id')
+          ->select('usu.name','usu.email','log.accion','log.fechaAccion')->get();
+        return response()->json($bitacora);
+        
     }
   
 
