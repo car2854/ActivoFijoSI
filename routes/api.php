@@ -42,6 +42,20 @@ Route::get('Revaluo','RevaluoController@ApiGetRevaluo');
 //Tranferencia
 Route::get('Tranferencia','TranferenciaController@ApiGetTraferencia');
 
+
+//Ubicacion
+Route::get('Ubicacion','UbicacionController@ApiGetUbicacion');
+
+//Custodio
+Route::get('Custodio','CustodioController@ApiGetCustodio');
+
+//Responsable
+Route::get('Responsable','ResponsableController@ApiGetResponsable');
+
+//Bien
+Route::get('Bien','BienController@ApiGetBien');
+
+
 // Route::resource('UbicacionMovil','UbicacionMovilController');
 // Route::resource('DepartamentoMovil','DepartamentoMovilController');
 // Route::resource('RubroMovil','RubroMovilController');
