@@ -50,7 +50,9 @@ class Log_ChangeController extends Controller
     
     public function ApiGetBitacora(){
         
-        $bitacora = Log_Change::get();
+        $bitacora=DB::table('log_change as log')
+          ->join('users as usu','log.id_user','=','usu.id')
+          ->select('usu.name','usu.email','log.accion','log.fechaAccion')->get();
         return response()->json($bitacora);
         
     }
