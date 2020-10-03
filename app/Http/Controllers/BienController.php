@@ -112,5 +112,18 @@ class BienController extends Controller
 
       return $pdf->stream('reporte-bien.pdf');
     }
+    
+    
+    
+    
+    
+    public function ApiGetBien(){
+
+        $bien=DB::table('bien')
+        ->where('EstadoBien','=','activo')->get();
+
+        return response()->json($bien);
+
+    }
 
 }
