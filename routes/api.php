@@ -33,6 +33,7 @@ Route::get('Bitacora','Log_ChangeController@ApiGetBitacora');
 
 // RevisionTecnica
 Route::get('Baja','BajaController@ApiGetBaja');
+Route::get('Mantenimiento','MantenimientoController@ApiGetMantenimiento');
 
 
 // Route::resource('UbicacionMovil','UbicacionMovilController');
