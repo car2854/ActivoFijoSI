@@ -168,22 +168,5 @@ class TranferenciaController extends Controller
         return response()->json($tranferencia);
 
     }
-    
-    public function ApiGetTraferenciaCreate(){
 
-        $ubicacion=DB::table('ubicacion')->get();
-        $custodio=DB::table('custodio')->get();
-        $responsable=DB::table('responsable')->get();
-        $bien = DB::table('bien')->get();
-        
-        $datos = [
-            "ubicacion" => $ubicacion,
-            "custodio" => $custodio,
-            "responsable" => $responsable,
-            "bien" => $bien
-        ];
-
-        return response()->json($datos);
-
-    }
 }
