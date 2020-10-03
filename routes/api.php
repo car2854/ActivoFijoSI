@@ -40,8 +40,8 @@ Route::get('Mantenimiento','MantenimientoController@ApiGetMantenimiento');
 Route::get('Revaluo','RevaluoController@ApiGetRevaluo');
 
 //Tranferencia
-Route::get('Tranferencia','TranferenciaController@ApiGetBaja');
-
+Route::get('Tranferencia','TranferenciaController@ApiGetTraferencia');
+Route::get('Tranferencia/Create','TranferenciaController@ApiGetTraferenciaCreate');
 
 // Route::resource('UbicacionMovil','UbicacionMovilController');
 // Route::resource('DepartamentoMovil','DepartamentoMovilController');
