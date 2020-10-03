@@ -31,6 +31,9 @@ Route::get('logout', 'UsuarioMovilController@logout');
 
 Route::get('Bitacora','Log_ChangeController@ApiGetBitacora');
 
+// RevisionTecnica
+Route::get('Baja','BajaController@ApiGetBaja');
+
 
 // Route::resource('UbicacionMovil','UbicacionMovilController');
 // Route::resource('DepartamentoMovil','DepartamentoMovilController');
