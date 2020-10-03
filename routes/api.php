@@ -29,6 +29,7 @@ Route::get('logout', 'UsuarioMovilController@logout');
 
 //----------------CARLOS ALBERTO----------------------
 
+//Bitacora
 Route::get('Bitacora','Log_ChangeController@ApiGetBitacora');
 
 // RevisionTecnica
@@ -36,6 +37,8 @@ Route::get('Baja','BajaController@ApiGetBaja');
 Route::get('Mantenimiento','MantenimientoController@ApiGetMantenimiento');
 Route::get('Revaluo','RevaluoController@ApiGetRevaluo');
 
+//Tranferencia
+Route::get('Tranferencia','TranferenciaController@ApiGetBaja');
 
 // Route::resource('UbicacionMovil','UbicacionMovilController');
 // Route::resource('DepartamentoMovil','DepartamentoMovilController');
