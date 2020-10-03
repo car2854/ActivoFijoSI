@@ -149,5 +149,18 @@ class CustodioController extends Controller
 
       return $pdf->stream('reporte-custodio.pdf');
     }
+    
+    
+    
+    
+    
+    public function ApiGetCustodio(){
+
+        $custodio=DB::table('custodio')
+        ->where('Estado','=','1')->get();
+
+        return response()->json($custodio);
+
+    }
 
 }
