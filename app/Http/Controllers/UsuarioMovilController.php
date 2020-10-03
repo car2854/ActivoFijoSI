@@ -44,8 +44,16 @@ class UsuarioMovilController extends Controller
 
         $usuario = new User;
         $usuario->id = $codigo + 1;
-        $usuario->name = $request->input('nombre');
+        $usuario->name = $request->input('name');
         $usuario->email = $request->input('email');
+
+        $verificar = DB::table('users')
+            ->where('email', $request->input('email'))->count('email');
+
+        if($verificar == 1){
+            return json_encode('Existe');
+        }
+
         $usuario->password = bcrypt($request->input('password'));
     	$usuario->save();
 
@@ -61,13 +69,64 @@ class UsuarioMovilController extends Controller
 
         $log = new Log_Change;
         $log->id = $codigoBitacora + 1;
-        $log->id_user = Auth::user()->id;
+        $log->id_user = $request->input('CodigoUsuario');
         $log->accion = 'Registro a un nuevo usuario';
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
         $log->save();
 
-        return response()->json($usuario, 200);
+        return json_encode('Creado');
+    }
 
+
+
+    public function update(Request $request, $id){
+
+        $usuario = User::findOrFail($id);
+        $usuario->name = $request->input('name');
+        $usuario->email = $request->input('email');
+
+        $verificar = DB::table('users')->where('email', $request->input('email'))->count('email');
+        if($verificar == 1){
+            return json_encode('Existe');
+        }
+
+        if($request->input('password') != NULL){
+                $usuario->password = bcrypt($request->get('password'));
+        }
+
+        $usuario->update();
+
+
+        $log = new Log_Change;
+        $log->id_user = $request->input('CodigoUsuario');
+        $log->accion = 'Actualizo el registro de un usuario';
+
+        $now = Carbon::now();
+        $log->fechaAccion = $now->format('d/m/Y H:i:s');
+
+        $log->save();
+
+    	return json_encode('Actualizado');
+    }
+
+
+    public function destroy($id, Request $request){
+    	$usuario = User::findOrFail($id);
+        $usuario->Estado = 0;
+        $usuario->update();
+
+
+
+        $log = new Log_Change;
+        $log->id_user = $request->input('CodigoUsuario');
+        $log->accion = 'Elimino el registro de un usuario';
+
+        $now = Carbon::now();
+        $log->fechaAccion = $now->format('d/m/Y H:i:s');
+
+        $log->save();
+
+        return json_encode('Eliminado');
     }
 }

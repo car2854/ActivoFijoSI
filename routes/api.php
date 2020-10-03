@@ -23,10 +23,8 @@ Route::resource('almacen/rubro', 'RubroController');
 // Gestionar usuario
 Route::resource('UsuarioMovil','UsuarioMovilController');
 Route::post('Login','UsuarioMovilController@login');
-Route::get('prueba', 'UsuarioMovilController@prueba');
-Route::get('logout', 'UsuarioMovilController@logout');
 // Depreciacion
-
+Route::get('Depreciacion', 'DepreciacionMovilController@index');
 //--------------------------------------------------
 
 // Route::resource('UbicacionMovil','UbicacionMovilController');
