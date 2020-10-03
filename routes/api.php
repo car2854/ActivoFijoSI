@@ -24,10 +24,10 @@ Route::resource('almacen/rubro', 'RubroController');
 Route::resource('UsuarioMovil','UsuarioMovilController');
 Route::post('Login','UsuarioMovilController@login');
 // Depreciacion
-<<<<<<< HEAD
+
 Route::get('Depreciacion', 'DepreciacionMovilController@index');
 //--------------------------------------------------
-=======
+
 
 //----------------CARLOS ALBERTO----------------------
 
@@ -41,7 +41,7 @@ Route::get('Revaluo','RevaluoController@ApiGetRevaluo');
 
 //Tranferencia
 Route::get('Tranferencia','TranferenciaController@ApiGetBaja');
->>>>>>> 2d5ec0afddc30a6eb2f390def189eca523faf183
+
 
 // Route::resource('UbicacionMovil','UbicacionMovilController');
 // Route::resource('DepartamentoMovil','DepartamentoMovilController');
