@@ -155,7 +155,7 @@ class TranferenciaController extends Controller
     }
     
     
-    public function ApiGetBaja(){
+    public function ApiGetTraferencia(){
 
         $tranferencia=DB::table('tranferencia as t')
         ->join('custodio as c','t.CodCustodioDestino','=','c.CodCustodio')
@@ -166,6 +166,17 @@ class TranferenciaController extends Controller
         ->orderBy('t.NroTranferencia','asc')->get();
 
         return response()->json($tranferencia);
+
+    }
+    
+    public function ApiGetTraferenciaCreate(){
+
+        $ubicacion=DB::table('ubicacion')->get();
+        $custodio=DB::table('custodio')->get();
+        $responsable=DB::table('responsable')->get();
+        $bien = DB::table('bien')->get();
+
+        return response()->json($ubicacion,$custodio,$responsable,$bien);
 
     }
 }
