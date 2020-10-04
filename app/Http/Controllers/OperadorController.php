@@ -128,4 +128,14 @@ class OperadorController extends Controller
 
       return $pdf->stream('reporte-operador.pdf');
     }
+    
+    public function getApiOperador(Request $request){
+
+        $query = trim($request->get('Nombre'));
+        $operador=DB::table('operador')->where('Nombre','LIKE','%'.$query.'%')
+        ->where('Estado','=','1')
+        ->get();
+        return response()->json($operador,200);
+        
+    }
 }
