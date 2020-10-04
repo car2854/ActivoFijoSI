@@ -172,7 +172,7 @@ class TranferenciaController extends Controller
     public function ApiPostTranferencia(Request $request){
         
         
-        return response()->json(substr($request->get('fecha'),0,10));
+        return response()->json(substr($request->get('fecha'),0,9));
         
         $tranferencia = new Tranferencia;
         $tranferencia->NroTranferencia = $request->get('nroTransferencia');
