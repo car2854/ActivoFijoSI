@@ -140,4 +140,58 @@ class RevisionController extends Controller
   public function destroy($id){
     return Redirect::to('RevisionTecnica/Operador');
   }
+    
+    
+
+    public function ApiGetRevision(){
+
+      $revision=DB::table('revisiontecnica')
+      ->join('bien','bien.CodBien','=','revisiontecnica.CodBien')
+      ->join('operador','operador.CodOperador','=','revisiontecnica.CodOperador')
+      ->join('custodio','custodio.CodCustodio','=','revisiontecnica.CodCustodio')
+      //->join('custodio','custodio.CodCustodio','=','custodio.CodCustodio')
+      ->leftJoin('baja', function($join1){
+        $join1->on('baja.NroRevision','=','revisiontecnica.NroRevision');
+      })
+      //verificar si en la otra tabla es null, la foraing key de esta tabla
+      ->whereNull('baja.NroRevision')
+      ->leftjoin('mantenimiento', function($join2){
+        $join2->on('mantenimiento.NroRevision','=','revisiontecnica.NroRevision');
+      })
+      ->whereNull('mantenimiento.NroRevision')
+      ->leftjoin('revaluo', function($join3){
+        $join3->on('revaluo.NroRevision','=','revisiontecnica.NroRevision');
+      })
+      ->whereNull('revaluo.NroRevision')
+      ->select('revisiontecnica.NroRevision','bien.CodBien','bien.Nombre as NombreBien','custodio.Nombre as NombreCustodio','custodio.Apellido as ApellidoCustodio','operador.Nombre as NombreOperador','operador.Apellido as ApellidoOperador','revisiontecnica.FechaHora')
+      ->orderBy('revisiontecnica.CodBien','desc')->get();
+        
+        return response()->json($revision);
+
+    }
+    
+    public function ApiGetMantenimiento(){
+
+      //en mantenimiento
+      $mant=DB::table('revisiontecnica')
+      ->join('bien','bien.CodBien','=','revisiontecnica.CodBien')
+      ->join('operador','operador.CodOperador','=','revisiontecnica.CodOperador')
+      ->join('custodio','custodio.CodCustodio','=','revisiontecnica.CodCustodio')
+      //->join('custodio','custodio.CodCustodio','=','custodio.CodCustodio')
+      ->join('mantenimiento','mantenimiento.NroRevision','=','revisiontecnica.NroRevision')
+      ->leftJoin('baja', function($join1){
+        $join1->on('baja.NroRevision','=','revisiontecnica.NroRevision');
+      })
+      //verificar si en la otra tabla es null, la foraing key de esta tabla
+      ->whereNull('baja.NroRevision')
+      ->leftjoin('revaluo', function($join3){
+        $join3->on('revaluo.NroRevision','=','revisiontecnica.NroRevision');
+      })
+      ->whereNull('revaluo.NroRevision')
+      ->select('revisiontecnica.NroRevision','bien.CodBien','bien.Nombre as NombreBien','custodio.Nombre as NombreCustodio','custodio.Apellido as ApellidoCustodio','operador.Nombre as NombreOperador','operador.Apellido as ApellidoOperador','revisiontecnica.FechaHora')
+      ->orderBy('revisiontecnica.CodBien','desc')->get();
+        
+        return response()->json($mant);
+
+    }
 }
