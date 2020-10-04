@@ -187,8 +187,7 @@ class RevaluoController extends Controller
 
         $log->save();
 
-
-        return Redirect::to('/RevisionTecnica/revisiontecnica');
+        return response()->json(1);
     
     }
 }
