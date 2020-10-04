@@ -185,7 +185,8 @@ class BajaController extends Controller{
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
 
         $log->save();
-
+        
+        return response()->json(1);
 
     }
 }
