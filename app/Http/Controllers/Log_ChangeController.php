@@ -52,7 +52,7 @@ class Log_ChangeController extends Controller
         
         $bitacora=DB::table('log_change as log')
           ->join('users as usu','log.id_user','=','usu.id')
-          ->select('usu.name','usu.email','log.accion','log.fechaAccion')->get();
+          ->select('usu.name','usu.email','log.accion','log.fechaAccion')->orderBy('log.id',DESC)->get();
         return response()->json($bitacora);
         
     }
