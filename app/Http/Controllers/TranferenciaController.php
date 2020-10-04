@@ -171,14 +171,11 @@ class TranferenciaController extends Controller
     
     public function ApiPostTranferencia(Request $request){
         
-        
-        return response()->json(substr($request->get('fecha'),0,9));
-        
         $tranferencia = new Tranferencia;
         $tranferencia->NroTranferencia = $request->get('nroTransferencia');
         $tranferencia->FechaTranferencia = substr($request->get('fecha'),0,10);
-        $tranferencia->CodCustodioOrigen = $request->get('cusorigen');
-        $tranferencia->CodCustodioDestino = $request->get('cusdestino');
+        $tranferencia->CodCustodioOrigen = $request->get('custodioOrigen');
+        $tranferencia->CodCustodioDestino = $request->get('custodioDestino');
         $tranferencia->CodResponsable = $request->get('responsable');
         $tranferencia->CodBien = $request->get('bien');
         $tranferencia->EstadoBien = "Nuevo";
@@ -191,8 +188,8 @@ class TranferenciaController extends Controller
 
         $log = new Log_Change;
         $log->id = $consulta[0]->id + 1;
-        $log->id_user = auth()->user()->id;
-        $log->accion = 'Realizo una transferencia';
+        $log->id_user = $request->get('usuario');
+        $log->accion = 'Realizo una transferencia desde el movil';
 
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
@@ -200,7 +197,7 @@ class TranferenciaController extends Controller
         $log->save();
 
         
-        return response()->json($request);
+        return response()->json(1);
         
     }
 
