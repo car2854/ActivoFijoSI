@@ -183,7 +183,7 @@ class TranferenciaController extends Controller
 //         $tranferencia->EstadoBien = "Nuevo";
 //         $tranferencia->save();
 
-        return response()->json($request->get('usuario'));
+        //return response()->json($request->get('usuario'));
         $sql = "SELECT max(id) as id
                 FROM log_change;";
         $consulta = DB::select($sql);
