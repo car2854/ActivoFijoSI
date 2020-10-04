@@ -38,6 +38,8 @@ Route::get('Bitacora','Log_ChangeController@ApiGetBitacora');
 Route::get('Baja','BajaController@ApiGetBaja');
 Route::get('Mantenimiento','MantenimientoController@ApiGetMantenimiento');
 Route::get('Revaluo','RevaluoController@ApiGetRevaluo');
+Route::get('RevisionTecnica','RevisionController@ApiGetRevision');
+Route::get('RevisionTecnica/Mantenimiento','RevisionController@ApiGetMantenimiento');
 
 //Tranferencia
 Route::get('Tranferencia','TranferenciaController@ApiGetTraferencia');
@@ -54,6 +56,7 @@ Route::get('Responsable','ResponsableController@ApiGetResponsable');
 
 //Bien
 Route::get('Bien','BienController@ApiGetBien');
+
 
 // Route::resource('UbicacionMovil','UbicacionMovilController');
 // Route::resource('DepartamentoMovil','DepartamentoMovilController');
