@@ -147,7 +147,7 @@ class MantenimientoController extends Controller
         
     }
     
-    public function ApiPostMantenimiento(){
+    public function ApiPostMantenimiento(Request $request){
 
         $sql = "SELECT max(NroMantenimiento) as id
         FROM mantenimiento;";
