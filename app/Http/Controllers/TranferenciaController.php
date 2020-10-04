@@ -187,10 +187,16 @@ class TranferenciaController extends Controller
         $sql = "SELECT max(id) as id
                 FROM log_change;";
         $consulta = DB::select($sql);
-
+        
+        $sql = "SELECT id
+                FROM users
+                WHERE name = ?;";
+        
+        $obtenerId = DB::select($sql,Array($request->get('usuario')));
+        
         $log = new Log_Change;
         $log->id = $consulta[0]->id + 1;
-        $log->id_user = $request->get('usuario');
+        $log->id_user = $obtenerId[0]->id;
         $log->accion = 'Realizo una transferencia desde el movil';
 
         $now = Carbon::now();
