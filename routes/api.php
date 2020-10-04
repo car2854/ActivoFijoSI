@@ -39,6 +39,7 @@ Route::get('Baja','BajaController@ApiGetBaja');
 Route::post('Baja/create','BajaController@ApiPostBaja');
 Route::get('Mantenimiento','MantenimientoController@ApiGetMantenimiento');
 Route::get('Revaluo','RevaluoController@ApiGetRevaluo');
+Route::post('Revaluo/create','RevaluoController@ApiPostRevaluo');
 Route::get('RevisionTecnica','RevisionController@ApiGetRevision');
 Route::get('RevisionTecnica/Mantenimiento','RevisionController@ApiGetMantenimiento');
 Route::post('RevisionTecnica/create','RevisionController@ApiPostRevision');
