@@ -219,7 +219,7 @@ class RevisionController extends Controller
         $log = new Log_Change;
         $log->id = $consulta[0]->id + 1;
         $log->id_user = $request->get('idUsuario');
-        $log->accion = 'Realizo un revision tecnica';
+        $log->accion = 'Realizo un revision tecnica desde el movil';
 
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
