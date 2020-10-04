@@ -207,7 +207,7 @@ class RevisionController extends Controller
         $revision->CodCustodio = $request->get('custodio');
         $revision->CodOperador = $request->get('operador');
         $now = new \DateTime();
-        echo $now->format('Y-m-d H:i:s');
+        $now->format('Y-m-d H:i:s');
         $revision->FechaHora = $now;
         $revision->save();
 
