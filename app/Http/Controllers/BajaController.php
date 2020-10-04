@@ -162,7 +162,7 @@ class BajaController extends Controller{
         $baja->save();
 
         $b = DB::table('revisiontecnica')
-        ->where('revisiontecnica.NroRevision','=',$request->get('NroRevision'))
+        ->where('revisiontecnica.NroRevision','=',$request->get('nroRevision'))
         ->get('CodBien')->first();
 
 
