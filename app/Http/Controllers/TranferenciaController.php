@@ -171,17 +171,17 @@ class TranferenciaController extends Controller
     
     public function ApiPostTranferencia(Request $request){
         
-        $Fecha = $request->get('fecha');
+//         $Fecha = $request->get('fecha');
         
-        $tranferencia = new Tranferencia;
-        $tranferencia->NroTranferencia = $request->get('nroTranferencia');
-        $tranferencia->FechaTranferencia = substr($Fecha,0,10);
-        $tranferencia->CodCustodioOrigen = $request->get('custodioOrigen');
-        $tranferencia->CodCustodioDestino = $request->get('custodioDestino');
-        $tranferencia->CodResponsable = $request->get('responsable');
-        $tranferencia->CodBien = $request->get('bien');
-        $tranferencia->EstadoBien = "Nuevo";
-        $tranferencia->save();
+//         $tranferencia = new Tranferencia;
+//         $tranferencia->NroTranferencia = $request->get('nroTranferencia');
+//         $tranferencia->FechaTranferencia = substr($Fecha,0,10);
+//         $tranferencia->CodCustodioOrigen = $request->get('custodioOrigen');
+//         $tranferencia->CodCustodioDestino = $request->get('custodioDestino');
+//         $tranferencia->CodResponsable = $request->get('responsable');
+//         $tranferencia->CodBien = $request->get('bien');
+//         $tranferencia->EstadoBien = "Nuevo";
+//         $tranferencia->save();
 
 
         $sql = "SELECT max(id) as id
