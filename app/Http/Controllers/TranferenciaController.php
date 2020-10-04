@@ -171,9 +171,11 @@ class TranferenciaController extends Controller
     
     public function ApiPostTranferencia(Request $request){
         
+        $Fecha = $request->get('fecha');
+        
         $tranferencia = new Tranferencia;
-        $tranferencia->NroTranferencia = $request->get('nroTransferencia');
-        $tranferencia->FechaTranferencia = substr($request->get('fecha'),0,10);
+        $tranferencia->NroTranferencia = $request->get('nroTranferencia');
+        $tranferencia->FechaTranferencia = substr($Fecha,0,10);
         $tranferencia->CodCustodioOrigen = $request->get('custodioOrigen');
         $tranferencia->CodCustodioDestino = $request->get('custodioDestino');
         $tranferencia->CodResponsable = $request->get('responsable');
