@@ -171,6 +171,35 @@ class TranferenciaController extends Controller
     
     public function ApiPostTranferencia(Request $request){
         
+        
+        return response()->json(substr($request->get('fecha'),0,10));
+        
+        $tranferencia = new Tranferencia;
+        $tranferencia->NroTranferencia = $request->get('nroTransferencia');
+        $tranferencia->FechaTranferencia = substr($request->get('fecha'),0,10);
+        $tranferencia->CodCustodioOrigen = $request->get('cusorigen');
+        $tranferencia->CodCustodioDestino = $request->get('cusdestino');
+        $tranferencia->CodResponsable = $request->get('responsable');
+        $tranferencia->CodBien = $request->get('bien');
+        $tranferencia->EstadoBien = "Nuevo";
+        $tranferencia->save();
+
+
+        $sql = "SELECT max(id) as id
+                FROM log_change;";
+        $consulta = DB::select($sql);
+
+        $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
+        $log->id_user = auth()->user()->id;
+        $log->accion = 'Realizo una transferencia';
+
+        $now = Carbon::now();
+        $log->fechaAccion = $now->format('d/m/Y H:i:s');
+
+        $log->save();
+
+        
         return response()->json($request);
         
     }
