@@ -38,6 +38,7 @@ Route::get('Bitacora','Log_ChangeController@ApiGetBitacora');
 Route::get('Baja','BajaController@ApiGetBaja');
 Route::post('Baja/create','BajaController@ApiPostBaja');
 Route::get('Mantenimiento','MantenimientoController@ApiGetMantenimiento');
+Route::post('Mantenimiento/create','MantenimientoController@ApiPostMantenimiento');
 Route::get('Revaluo','RevaluoController@ApiGetRevaluo');
 Route::post('Revaluo/create','RevaluoController@ApiPostRevaluo');
 Route::get('RevisionTecnica','RevisionController@ApiGetRevision');
