@@ -157,7 +157,7 @@ class RevaluoController extends Controller
         $rev->NroRevision = $request->get('idRevision');
         $rev->Estado = $request->get('estado');
         $now = new \DateTime();
-        echo $now->format('Y-m-d H:i:s');
+        $now->format('Y-m-d H:i:s');
         $rev->FechaHora = $now;
         $rev->Monto = $request->get('monto');
         $rev->Descripcion = $request->get('descripcion');
@@ -180,7 +180,7 @@ class RevaluoController extends Controller
         $log = new Log_Change;
         $log->id = $consulta[0]->id + 1;
         $log->id_user = $request->get('idUsuario');
-        $log->accion = 'Realizo un revaluo';
+        $log->accion = 'Realizo un revaluo desde el movil';
 
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
