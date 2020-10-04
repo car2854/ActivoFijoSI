@@ -57,6 +57,8 @@ Route::get('Responsable','ResponsableController@ApiGetResponsable');
 //Bien
 Route::get('Bien','BienController@ApiGetBien');
 
+//Operador
+Route::get('Operador','OperadorController@getApiOperador');
 
 // Route::resource('UbicacionMovil','UbicacionMovilController');
 // Route::resource('DepartamentoMovil','DepartamentoMovilController');
