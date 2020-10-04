@@ -171,7 +171,7 @@ class TranferenciaController extends Controller
     
     public function ApiPostTranferencia(Request $request){
         
-        return json()->json($request);
+        return response()->json($request);
         
     }
 
