@@ -146,4 +146,59 @@ class MantenimientoController extends Controller
         return response()->json($Mantenimiento);
         
     }
+    
+    public function ApiPostMantenimiento(){
+
+        $sql = "SELECT max(NroMantenimiento) as id
+        FROM mantenimiento;";
+        $consulta = DB::select($sql);
+
+        $fechaInicio = $request->get('fechaInicio');
+        $fechaFin = $request->get('fechaFin');
+
+        $anioI = substr($fechaInicio,0,4);
+        $mesI = substr($fechaInicio,5,2);
+        $diaI = substr($fechaInicio,8,2);
+        $fechaInicio = $anioI . '-' . $mesI . '-' . $diaI;
+
+        $anioF = substr($fechaFin,0,4);
+        $mesF = substr($fechaFin,5,2);
+        $diaF = substr($fechaFin,8,2);
+        $fechaFin = $anioF . '-' . $mesF . '-' . $diaF;
+
+
+        $mant=new mantenimiento;
+        $mant->NroMantenimiento = $consulta[0]->id + 1;
+        $mant->NroRevision = $request->get('idRevision');
+        $mant->Problema = $request->get('problema');
+        $mant->Solucion = $request->get('solucion');
+        $mant->FechaInicio = $fechaInicio;
+        $mant->FechaFinalizo = $fechaFin;
+        $mant->HoraIncio = $request->get('horaInicio');
+        $mant->HoraFinalizo = $request->get('horaFin');
+        $mant->Duraccion = $request->get('duracion');
+        $mant->Costo = $request->get('costo');
+        $mant->save();
+
+
+        $sql = "SELECT max(id) as id
+        FROM log_change;";
+        $consulta = DB::select($sql);
+
+        $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
+        $log->id_user = $request->get('idUsuario');
+        $log->accion = 'Realizo un mantenimiento desde el movil';
+
+        $now = Carbon::now();
+        $log->fechaAccion = $now->format('d/m/Y H:i:s');
+
+        $log->save();
+
+
+
+        return response()->json(1);
+
+    }
+    
 }
