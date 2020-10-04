@@ -40,6 +40,7 @@ Route::get('Mantenimiento','MantenimientoController@ApiGetMantenimiento');
 Route::get('Revaluo','RevaluoController@ApiGetRevaluo');
 Route::get('RevisionTecnica','RevisionController@ApiGetRevision');
 Route::get('RevisionTecnica/Mantenimiento','RevisionController@ApiGetMantenimiento');
+Route::post('RevisionTecnica/create','RevisionController@ApiPostRevision');
 
 //Tranferencia
 Route::get('Tranferencia','TranferenciaController@ApiGetTraferencia');
