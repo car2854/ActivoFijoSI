@@ -194,4 +194,39 @@ class RevisionController extends Controller
         return response()->json($mant);
 
     }
+    
+    public function ApiPostRevision(Request $request){
+        
+        $sql = "SELECT max(NroRevision) as id
+        FROM revisiontecnica;";
+        $consulta = DB::select($sql);
+
+        $revision = new Revision;
+        $revision->NroRevision = $consulta[0]->id + 1;
+        $revision->CodBien = $request->get('bien');
+        $revision->CodCustodio = $request->get('custodio');
+        $revision->CodOperador = $request->get('operador');
+        $now = new \DateTime();
+        echo $now->format('Y-m-d H:i:s');
+        $revision->FechaHora = $now;
+        $revision->save();
+
+
+        $sql = "SELECT max(id) as id
+        FROM log_change;";
+        $consulta = DB::select($sql);
+
+        $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
+        $log->id_user = $request->get('idUsuario');
+        $log->accion = 'Realizo un revision tecnica';
+
+        $now = Carbon::now();
+        $log->fechaAccion = $now->format('d/m/Y H:i:s');
+
+        $log->save();
+
+        return response()->json(1);
+        
+    }
 }
