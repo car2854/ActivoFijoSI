@@ -155,7 +155,7 @@ class TranferenciaController extends Controller
     }
     
     
-    public function ApiGetBaja(){
+    public function ApiGetTraferencia(){
 
         $tranferencia=DB::table('tranferencia as t')
         ->join('custodio as c','t.CodCustodioDestino','=','c.CodCustodio')
@@ -168,4 +168,39 @@ class TranferenciaController extends Controller
         return response()->json($tranferencia);
 
     }
+    
+    public function ApiPostTranferencia(Request $request){
+        
+        $Fecha = $request->get('fecha');
+        
+        $tranferencia = new Tranferencia;
+        $tranferencia->NroTranferencia = $request->get('nroTranferencia');
+        $tranferencia->FechaTranferencia = substr($Fecha,0,10);
+        $tranferencia->CodCustodioOrigen = $request->get('custodioOrigen');
+        $tranferencia->CodCustodioDestino = $request->get('custodioDestino');
+        $tranferencia->CodResponsable = $request->get('responsable');
+        $tranferencia->CodBien = $request->get('bien');
+        $tranferencia->EstadoBien = "Nuevo";
+        $tranferencia->save();
+
+        //return response()->json($request->get('usuario'));
+        $sql = "SELECT max(id) as id
+                FROM log_change;";
+        $consulta = DB::select($sql);
+        
+        $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
+        $log->id_user = $request->get('idUsuario');
+        $log->accion = 'Realizo una transferencia desde el movil';
+
+        $now = Carbon::now();
+        $log->fechaAccion = $now->format('d/m/Y H:i:s');
+
+        $log->save();
+
+        
+        return response()->json(1);
+        
+    }
+
 }

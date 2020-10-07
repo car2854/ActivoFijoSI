@@ -140,4 +140,15 @@ class UbicacionController extends Controller
 
       return $pdf->stream('reporte-ubicacion.pdf');
     }
+    
+    public function ApiGetUbicacion(){
+
+        $ubicacion=DB::table('ubicacion')
+        ->where('Estado','=','1')->get();
+        
+        return response()->json($ubicacion);
+
+    }
+    
+    
 }

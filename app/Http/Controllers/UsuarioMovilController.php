@@ -34,7 +34,7 @@ class UsuarioMovilController extends Controller
 
 
     public function index(Request $request){
-        $usuario = User::all();
+        $usuario = User::where('Estado',1)->get();
         return response()->json($usuario, 200);
     }
 
@@ -60,7 +60,7 @@ class UsuarioMovilController extends Controller
         $nuevoId = $codigo + 1;
 
         $rol = $request->input('rol');
-        
+
         $sql = "INSERT INTO model_has_roles
                 value($rol,'activofijo\User', $nuevoId);";
 

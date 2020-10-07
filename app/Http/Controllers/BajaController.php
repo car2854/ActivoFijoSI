@@ -144,4 +144,49 @@ class BajaController extends Controller{
         return response()->json($baja);
         
     }
+    
+    
+    public function ApiPostBaja(Request $request){
+        $sql = "SELECT max(NroBaja) as id
+        FROM baja;";
+        $consulta = DB::select($sql);
+
+
+        $baja=new baja;
+        $baja->NroBaja = $consulta[0]->id + 1;
+        $baja->NroRevision = $request->get('nroRevision');
+        $baja->Descripcion = $request->get('descripcion');
+        $now = new \DateTime();
+        $now->format('Y-m-d H:i:s');
+        $baja->FechaHora = $now;
+        $baja->save();
+
+        $b = DB::table('revisiontecnica')
+        ->where('revisiontecnica.NroRevision','=',$request->get('nroRevision'))
+        ->get('CodBien')->first();
+
+
+        $bien=Bien::findOrFail($b->CodBien);
+        $bien->EstadoBien = "inactivo";
+        $bien->update();
+
+
+
+        $sql = "SELECT max(id) as id
+        FROM log_change;";
+        $consulta = DB::select($sql);
+
+        $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
+        $log->id_user = $request->get('idUsuario');
+        $log->accion = 'Dio de baja un bien desde el movil';
+
+        $now = Carbon::now();
+        $log->fechaAccion = $now->format('d/m/Y H:i:s');
+
+        $log->save();
+        
+        return response()->json(1);
+
+    }
 }

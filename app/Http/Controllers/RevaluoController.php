@@ -145,4 +145,49 @@ class RevaluoController extends Controller
         return response()->json($Revaluo);
         
     }
+    
+    public function ApiPostRevaluo(Request $request){
+    
+        $sql = "SELECT max(NroRevaluo) as id
+        FROM revaluo;";
+        $consulta = DB::select($sql);
+
+        $rev=new revaluo;
+        $rev->NroRevaluo = $consulta[0]->id + 1;
+        $rev->NroRevision = $request->get('idRevision');
+        $rev->Estado = $request->get('estado');
+        $now = new \DateTime();
+        $now->format('Y-m-d H:i:s');
+        $rev->FechaHora = $now;
+        $rev->Monto = $request->get('monto');
+        $rev->Descripcion = $request->get('descripcion');
+        $rev->save();
+
+        $sql = "SELECT bien.CodBien as id
+                    FROM revisiontecnica,bien
+                    WHERE revisiontecnica.CodBien = bien.CodBien and revisiontecnica.NroRevision = ?;";
+
+        $consulta = DB::select($sql,array($request->get('idRevision')));
+
+        $ActualizarValor = Bien::findOrFail($consulta[0]->id);
+        $ActualizarValor->NuevoValorRevaluo = $request->get('monto');
+        $ActualizarValor->update();
+
+        $sql = "SELECT max(id) as id
+        FROM log_change;";
+        $consulta = DB::select($sql);
+
+        $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
+        $log->id_user = $request->get('idUsuario');
+        $log->accion = 'Realizo un revaluo desde el movil';
+
+        $now = Carbon::now();
+        $log->fechaAccion = $now->format('d/m/Y H:i:s');
+
+        $log->save();
+
+        return response()->json(1);
+    
+    }
 }

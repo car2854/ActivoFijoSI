@@ -28,7 +28,7 @@ Route::get('Depreciacion', 'DepreciacionMovilController@index');
 //--------------------------------------------------
 
 // --------------David----------------------
-Route::get('listarCustodio', 'EmpleadoController@listarcustodio'); 
+Route::get('listarCustodio', 'EmpleadoController@listarcustodio');
 Route::get('listarResponsable', 'EmpleadoController@listarResponsable');
 Route::get('listarOperador', 'EmpleadoController@listarOperador');
 
@@ -39,14 +39,33 @@ Route::get('Bitacora','Log_ChangeController@ApiGetBitacora');
 
 // RevisionTecnica
 Route::get('Baja','BajaController@ApiGetBaja');
+Route::post('Baja/create','BajaController@ApiPostBaja');
 Route::get('Mantenimiento','MantenimientoController@ApiGetMantenimiento');
+Route::post('Mantenimiento/create','MantenimientoController@ApiPostMantenimiento');
 Route::get('Revaluo','RevaluoController@ApiGetRevaluo');
+Route::post('Revaluo/create','RevaluoController@ApiPostRevaluo');
+Route::get('RevisionTecnica','RevisionController@ApiGetRevision');
+Route::get('RevisionTecnica/Mantenimiento','RevisionController@ApiGetMantenimiento');
+Route::post('RevisionTecnica/create','RevisionController@ApiPostRevision');
 
 //Tranferencia
-Route::get('Tranferencia','TranferenciaController@ApiGetBaja');
-//----------------------------------
-Route::apiResource('CategoriaMovil','CategoriaMovilController');
-Route::apiResource('BienMovil','BienMovilController');
+Route::get('Tranferencia','TranferenciaController@ApiGetTraferencia');
+Route::post('Tranferencia/create','TranferenciaController@ApiPostTranferencia');
+
+//Ubicacion
+Route::get('Ubicacion','UbicacionController@ApiGetUbicacion');
+
+//Custodio
+Route::get('Custodio','CustodioController@ApiGetCustodio');
+
+//Responsable
+Route::get('Responsable','ResponsableController@ApiGetResponsable');
+
+//Bien
+Route::get('Bien','BienController@ApiGetBien');
+
+//Operador
+Route::get('Operador','OperadorController@getApiOperador');
 
 // Route::resource('UbicacionMovil','UbicacionMovilController');
 // Route::resource('DepartamentoMovil','DepartamentoMovilController');
