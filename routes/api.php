@@ -24,10 +24,13 @@ Route::resource('almacen/rubro', 'RubroController');
 Route::resource('UsuarioMovil','UsuarioMovilController');
 Route::post('Login','UsuarioMovilController@login');
 // Depreciacion
-
 Route::get('Depreciacion', 'DepreciacionMovilController@index');
 //--------------------------------------------------
 
+// --------------David----------------------
+Route::get('listarCustodio', 'EmpleadoController@listarcustodio'); 
+Route::get('listarResponsable', 'EmpleadoController@listarResponsable');
+Route::get('listarOperador', 'EmpleadoController@listarOperador');
 
 //----------------CARLOS ALBERTO----------------------
 
@@ -41,7 +44,9 @@ Route::get('Revaluo','RevaluoController@ApiGetRevaluo');
 
 //Tranferencia
 Route::get('Tranferencia','TranferenciaController@ApiGetBaja');
-
+//----------------------------------
+Route::apiResource('CategoriaMovil','CategoriaMovilController');
+Route::apiResource('BienMovil','BienMovilController');
 
 // Route::resource('UbicacionMovil','UbicacionMovilController');
 // Route::resource('DepartamentoMovil','DepartamentoMovilController');

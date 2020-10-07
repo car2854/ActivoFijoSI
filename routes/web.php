@@ -63,7 +63,6 @@ Route::resource('depreciacion/depreciacion','DepreciacionController');
 
 
 
-
 Route::resource('seguridad/usuario','UsuarioController');
 Route::resource('seguridad/bitacora','Log_ChangeController');
 

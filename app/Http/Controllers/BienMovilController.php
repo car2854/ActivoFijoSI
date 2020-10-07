@@ -12,27 +12,19 @@ use activofijo\Http\Controllers\Controller;
 
 class BienMovilController extends Controller
 {
-  public function index(Request $request){
+  public function index(){
 
-    $query = trim($request->get('CodBien'));
-    $bien=DB::table('bien')->where('bien.CodBien','LIKE','%'.$query.'%')
-    ->where('EstadoBien','=','activo')
+    $bien=DB::table('bien')
     ->join('departamento','departamento.CodDepartamento','=','bien.UbicacionDepartamento')
     ->join('custodio','custodio.CodDepartamento','=','departamento.CodDepartamento')
     ->join('rubro','rubro.CodRubro','=','bien.CodRubro')
     ->select('bien.CodBien','bien.Nombre','bien.FechaAdquisicion','bien.ValorCompra','bien.Estado','bien.UbicacionDepartamento','bien.UbicacionAlmacen','bien.CodCategoria','bien.estadobien','bien.CodRubro','departamento.Descripcion as Ubicacion','custodio.Nombre as NombreCustodio','rubro.vidautil')
+    ->where('EstadoBien','=','activo')
     ->get();
     return response()->json($bien,200);
   }
 
   public function store(Request $request){
-
-
-    $user = $request->get('users');
-    $idU = DB::table('users')
-    ->where('users.name','LIKE','%'.$user.'%')
-    ->select('users.id');
-
 
     $sql = "SELECT max(id) as id
     FROM log_change;";
@@ -40,7 +32,7 @@ class BienMovilController extends Controller
 
     $log = new Log_Change;
     $log->id = $consulta[0]->id + 1;
-    $log->id_user = auth()->user()->id;
+    $log->id_user = $request->input('CodigoUser');
     $log->accion = 'Registro a un nuevo bien desde el movil';
 
     $now = Carbon::now();
