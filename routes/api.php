@@ -32,6 +32,10 @@ Route::get('listarCustodio', 'EmpleadoController@listarcustodio');
 Route::get('listarResponsable', 'EmpleadoController@listarResponsable');
 Route::get('listarOperador', 'EmpleadoController@listarOperador');
 
+
+Route::apiResource('CategoriaMovil','CategoriaMovilController');
+Route::apiResource('BienMovil','BienMovilController');
+
 //----------------CARLOS ALBERTO----------------------
 
 //Bitacora
