@@ -149,8 +149,8 @@ class BienController extends Controller
         $consulta = DB::select($sql);
 
         $log = new Log_Change;
-        $log->id = $request->get('idUsuario');
-        $log->id_user = auth()->user()->id;
+        $log->id = $consulta[0]->id + 1;
+        $log->id_user = $request->get('idUsuario');
         $log->accion = 'Registro un nuevo bien desde el movil';
 
         $now = Carbon::now();
