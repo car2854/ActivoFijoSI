@@ -71,6 +71,9 @@ Route::get('Bien','BienController@ApiGetBien');
 //Operador
 Route::get('Operador','OperadorController@getApiOperador');
 
+//Departamento
+Route::get('Departamento','DepartamentoController@getApiDepartamento');
+
 // Route::resource('UbicacionMovil','UbicacionMovilController');
 // Route::resource('DepartamentoMovil','DepartamentoMovilController');
 // Route::resource('RubroMovil','RubroMovilController');
