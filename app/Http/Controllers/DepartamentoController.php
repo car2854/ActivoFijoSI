@@ -153,4 +153,15 @@ class DepartamentoController extends Controller
 
       return $pdf->stream('reporte-departamento.pdf');
     }
+    
+    
+    public function getApiDepartamento(){
+        $dpto=DB::table('departamento as d')
+        ->join('ubicacion as u','u.CodUbicacion','=','d.CodUbicacion')
+        ->where('d.Estado','=','1')
+        ->select('d.CodDepartamento','d.Descripcion','u.Edificio as edificio','u.Ciudad as ciudad','u.Pais as pais')
+        ->orderBy('d.CodDepartamento','asc')->get();
+        return response()->json($dpto);
+    }
+    
 }
