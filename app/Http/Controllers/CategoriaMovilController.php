@@ -24,7 +24,7 @@ class CategoriaMovilController extends Controller
   public function index(Request $request)
   {
     $bien = Categoria::all()
-    return response()->json(, 200);
+    return response()->json($bien, 200);
   }
 
   public function store(Request $request)
