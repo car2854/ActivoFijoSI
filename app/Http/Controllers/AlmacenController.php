@@ -129,8 +129,7 @@ class AlmacenController extends Controller
     
     public function getApiAlmacen(){
         $almacen=DB::table('almacen')
-        ->where('Estado','=','1')
-        ->select('NroAlmacen','Direccion')->get();
+        ->where('Estado','=','1')->get();
         return response()->json($almacen,200);
     }
 }
