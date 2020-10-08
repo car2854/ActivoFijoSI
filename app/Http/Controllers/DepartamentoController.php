@@ -159,7 +159,7 @@ class DepartamentoController extends Controller
         $dpto=DB::table('departamento as d')
         ->join('ubicacion as u','u.CodUbicacion','=','d.CodUbicacion')
         ->where('d.Estado','=','1')
-        ->select('d.CodDepartamento','d.Descripcion','u.Edificio as edificio','u.Ciudad as ciudad','u.Pais as pais')
+        ->select('d.CodDepartamento','d.Descripcion','u.Edificio','u.Ciudad','u.Pais')
         ->orderBy('d.CodDepartamento','asc')->get();
         return response()->json($dpto);
     }
