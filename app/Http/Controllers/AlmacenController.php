@@ -125,4 +125,12 @@ class AlmacenController extends Controller
 
       return $pdf->stream('reporte-almacen.pdf');
     }
+    
+    
+    public function getApiAlmacen(){
+        $almacen=DB::table('almacen')
+        ->where('Estado','=','1')
+        ->select('NroAlmacen','Direccion')->get();
+        return response()->json($almacen,200);
+    }
 }
