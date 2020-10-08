@@ -80,6 +80,8 @@ Route::get('Almacen','AlmacenController@getApiAlmacen');
 //Rubro
 Route::get('Rubro','RubroController@getApiRubro');
 
+//Categoria
+Route::get('Categoria','CategoriaController@getApiCategoria');
 
 // Route::resource('UbicacionMovil','UbicacionMovilController');
 // Route::resource('DepartamentoMovil','DepartamentoMovilController');
