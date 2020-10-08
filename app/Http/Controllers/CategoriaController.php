@@ -148,4 +148,13 @@ class CategoriaController extends Controller
 
       return $pdf->stream('reporte-categoria.pdf');
     }
+    
+    
+    
+        
+    public function getApiCategoria(){
+        $categoria=DB::table('categoria as c')
+        ->orderBy('c.CodCategoria','asc')->get();
+        return response()->json($categoria,200);
+    }
 }
