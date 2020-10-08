@@ -67,6 +67,7 @@ Route::get('Responsable','ResponsableController@ApiGetResponsable');
 
 //Bien
 Route::get('Bien','BienController@ApiGetBien');
+Route::post('Bien/create','BienController@ApiPostBien')
 
 //Operador
 Route::get('Operador','OperadorController@getApiOperador');
