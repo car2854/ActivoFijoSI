@@ -160,4 +160,11 @@ class RubroController extends Controller
 
       return $pdf->stream('reporte-rubro.pdf');
     }
+    
+    
+    public function getApiRubro(){
+        $rubro=DB::table('rubro')
+        ->orderBy('CodRubro','asc')->get();
+        return response()->json($rubro,200);
+    }
 }
