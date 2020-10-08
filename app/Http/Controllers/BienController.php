@@ -126,7 +126,7 @@ class BienController extends Controller
     }
     
     
-    public function BienController(){
+    public function ApiPostBien(){
         
         $Fecha = $request->get('fechaAdquisicion');
         
