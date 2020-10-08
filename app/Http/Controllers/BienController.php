@@ -151,7 +151,7 @@ class BienController extends Controller
         $log = new Log_Change;
         $log->id = $request->get('idUsuario');
         $log->id_user = auth()->user()->id;
-        $log->accion = 'Registro un nuevo bien';
+        $log->accion = 'Registro un nuevo bien desde el movil';
 
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
