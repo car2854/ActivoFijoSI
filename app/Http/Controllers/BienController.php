@@ -124,5 +124,42 @@ class BienController extends Controller
 
         return response()->json($bien);
     }
+    
+    
+    public function BienController(){
+        
+        $Fecha = $request->get('fechaAdquisicion');
+        
+        $bien = new Bien;
+        $bien->CodBien = $request->get('codigo');
+    	$bien->Nombre = $request->get('nombre');
+    	$bien->FechaAdquisicion = substr($Fecha,0,10);
+        $bien->ValorCompra = $request->get('valorCompra');
+        $bien->Estado = $request->get('estado');
+        $bien->EstadoBien = "activo";
+        $bien->UbicacionDepartamento = $request->get('departamentoDestino');
+        $bien->UbicacionAlmacen = $request->get('almacenOrigen');
+        $bien->CodCategoria = $request->get('categoria');
+        $bien->CodRubro = $request->get('rubro');
+    	$bien->save();
+
+
+        $sql = "SELECT max(id) as id
+                FROM log_change;";
+        $consulta = DB::select($sql);
+
+        $log = new Log_Change;
+        $log->id = $request->get('idUsuario');
+        $log->id_user = auth()->user()->id;
+        $log->accion = 'Registro un nuevo bien';
+
+        $now = Carbon::now();
+        $log->fechaAccion = $now->format('d/m/Y H:i:s');
+
+        $log->save();
+
+        
+        return response()->json(1);
+    }
 
 }
