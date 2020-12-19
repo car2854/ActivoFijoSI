@@ -38,6 +38,9 @@ class UsuarioMovilController extends Controller
         return response()->json($usuario, 200);
     }
 
+
+
+    
     public function store(Request $request){
 
         $codigo = DB::table('users')->max('id');
@@ -98,8 +101,12 @@ class UsuarioMovilController extends Controller
 
         $usuario->update();
 
+        $sql = "SELECT max(id) as id
+        FROM log_change;";
+        $consulta = DB::select($sql);
 
         $log = new Log_Change;
+        $log->id = $consulta[0]->id + 1;
         $log->id_user = $request->input('CodigoUsuario');
         $log->accion = 'Actualizo el registro de un usuario';
 
@@ -112,16 +119,20 @@ class UsuarioMovilController extends Controller
     }
 
 
-    public function destroy($id, Request $request){
+    public function eliminar($id, Request $request){
     	$usuario = User::findOrFail($id);
         $usuario->Estado = 0;
         $usuario->update();
 
 
+        $sql = "SELECT max(id) as id
+        FROM log_change;";
+        $consulta = DB::select($sql);
 
         $log = new Log_Change;
-        $log->id_user = $request->input('CodigoUsuario');
-        $log->accion = 'Elimino el registro de un usuario';
+        $log->id = $consulta[0]->id + 1;
+        $log->id_user = $request->get('idUsuario');
+        $log->accion = 'Se elimino un usuario desde el movil';
 
         $now = Carbon::now();
         $log->fechaAccion = $now->format('d/m/Y H:i:s');
@@ -131,5 +142,5 @@ class UsuarioMovilController extends Controller
         return json_encode('Eliminado');
     }
 
-    //futa madre
 }
+
